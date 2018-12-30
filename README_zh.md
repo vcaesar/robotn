@@ -1,9 +1,5 @@
 # Robotn
 
-<!--<img align="right" src="https://raw.githubusercontent.com/go-vgo/robotgo/master/logo.jpg">-->
-<!--[![Build Status](https://travis-ci.org/go-vgo/robotgo.svg)](https://travis-ci.org/go-vgo/robotgo)
-[![codecov](https://codecov.io/gh/go-vgo/robotgo/branch/master/graph/badge.svg)](https://codecov.io/gh/go-vgo/robotgo)-->
-<!--<a href="https://circleci.com/gh/go-vgo/robotgo/tree/dev"><img src="https://img.shields.io/circleci/project/go-vgo/robotgo/dev.svg" alt="Build Status"></a>-->
 [![Build Status](https://travis-ci.org/go-vgo/robotgo.svg)](https://travis-ci.org/go-vgo/robotgo)
 [![CircleCI Status](https://circleci.com/gh/go-vgo/robotgo.svg?style=shield)](https://circleci.com/gh/go-vgo/robotgo)
 ![Appveyor](https://ci.appveyor.com/api/projects/status/github/go-vgo/robotgo?branch=master&svg=true)
@@ -11,14 +7,14 @@
 [![GoDoc](https://godoc.org/github.com/go-vgo/robotgo?status.svg)](https://godoc.org/github.com/go-vgo/robotgo)
 [![GitHub release](https://img.shields.io/github/release/go-vgo/robotgo.svg)](https://github.com/go-vgo/robotgo/releases/latest)
 [![Join the chat at https://gitter.im/go-vgo/robotgo](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/go-vgo/robotgo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-<!-- [![Release](https://github-release-version.herokuapp.com/github/go-vgo/robotgo/release.svg?style=flat)](https://github.com/go-vgo/robotgo/releases/latest) -->
-<!-- <a href="https://github.com/go-vgo/robotgo/releases"><img src="https://img.shields.io/badge/%20version%20-%206.0.0%20-blue.svg?style=flat-square" alt="Releases"></a> -->
   
-  >Golang Desktop Automation. Control the mouse, keyboard, bitmap, read the screen,   Window Handle and global event listener.
+  >Golang 跨平台自动化系统，控制键盘鼠标位图和读取屏幕，窗口句柄以及全局事件监听
   
-RobotGo supports Mac, Windows, and Linux(X11).
+RobotGo 支持 Mac, Windows, and Linux(X11).
 
-[简体中文](https://github.com/go-vgo/robotgo/blob/master/README_zh.md)
+提 Issues 请到 [Github](https://github.com/go-vgo/robotgo), 便于统一管理和即时更新
+
+QQ 群: 595877611
 
 ## Contents
 - [Docs](#docs)
@@ -34,16 +30,17 @@ RobotGo supports Mac, Windows, and Linux(X11).
 - [License](#license)
 
 ## Docs
-  - [GoDoc](https://godoc.org/github.com/go-vgo/robotgo)
-  - [API Docs](https://github.com/go-vgo/robotgo/blob/master/docs/doc.md) &nbsp;&nbsp;&nbsp;
-  - [中文文档](https://github.com/go-vgo/robotgo/blob/master/docs/doc_zh.md)
+- [GoDoc](https://godoc.org/github.com/go-vgo/robotgo)
+- [中文文档](https://github.com/go-vgo/robotgo/blob/master/docs/doc_zh.md)&nbsp;&nbsp;&nbsp;
+- [English Docs](https://github.com/go-vgo/robotgo/blob/master/docs/doc.md) 
 
 ## Requirements:
+环境要求:
 
-Now, Please make sure `Golang, GCC` is installed correctly before installing RobotGo.
+在安装 RobotGo 之前, 请确保 `Golang、GCC` 被正确安装
 
-### ALL: 
-``` 
+### ALL:  
+```
 Golang
 
 GCC
@@ -56,21 +53,22 @@ Xcode Command Line Tools
 
 #### For Windows:
 ```
-MinGW-w64 (Use recommended) or other GCC
+MinGW-w64 (推荐使用) or other GCC
 ```
 
-#### For everything else:
+#### For everything else (Linux 等其他系统):
 ```
 GCC, libpng
     
 X11 with the XTest extension (also known as the Xtst library)
 
-Event:
+事件:
     
 xcb, xkb, libxkbcommon
-``` 
+```
 
 ##### Ubuntu:
+
 ```yml
 sudo apt-get install gcc libc6-dev
 
@@ -80,6 +78,7 @@ sudo apt-get install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommo
 sudo apt-get install libxkbcommon-dev
 
 sudo apt-get install xsel xclip
+
 ```
 
 #### Fedora:
@@ -98,19 +97,19 @@ go get github.com/go-vgo/robotgo
 ```
   It's that easy!
 
-png.h: No such file or directory? Please see [issues/47](https://github.com/go-vgo/robotgo/issues/47).
+png.h: No such file or directory? Please see [issues/47](https://github.com/go-vgo/robotgo/issues/47).  
 
 ## Update:
 ```
-go get -u github.com/go-vgo/robotgo  
+go get -u github.com/go-vgo/robotgo   
 ```
 
-Note go1.10.x C file compilation cache problem, [golang #24355](https://github.com/golang/go/issues/24355). 
+注意 go1.10.x C 文件编译缓存问题, [golang #24355](https://github.com/golang/go/issues/24355).
 `go mod vendor` problem, [golang #26366](https://github.com/golang/go/issues/26366).
 
 ## [Examples:](https://github.com/go-vgo/robotgo/blob/master/examples)
 
-#### [Mouse](https://github.com/go-vgo/robotgo/blob/master/examples/mouse/main.go)
+#### [鼠标](https://github.com/go-vgo/robotgo/blob/master/examples/mouse/main.go)
 
 ```Go
 package main
@@ -126,13 +125,13 @@ func main() {
 } 
 ``` 
 
-#### [Keyboard](https://github.com/go-vgo/robotgo/blob/master/examples/key/main.go)
+#### [键盘](https://github.com/go-vgo/robotgo/blob/master/examples/key/main.go)
 
 ```Go
 package main
 
-import (
-  "fmt"
+import ( 
+  "fmt" 
 
   "github.com/go-vgo/robotgo"
 )
@@ -154,7 +153,7 @@ func main() {
   arr := []string{"alt", "command"}
   robotgo.KeyTap("i", arr)
 
-  robotgo.WriteAll("Test")
+  robotgo.WriteAll("测试")
   text, err := robotgo.ReadAll()
   if err == nil {
     fmt.Println(text)
@@ -162,7 +161,7 @@ func main() {
 } 
 ```
 
-#### [Screen](https://github.com/go-vgo/robotgo/blob/master/examples/screen/main.go)
+#### [屏幕](https://github.com/go-vgo/robotgo/blob/master/examples/screen/main.go)
 
 ```Go
 package main
@@ -177,11 +176,11 @@ func main() {
   x, y := robotgo.GetMousePos()
   fmt.Println("pos: ", x, y)
   color := robotgo.GetPixelColor(100, 200)
-  fmt.Println("color---- ", color)
+  fmt.Println("color----", color)
 } 
 ```
 
-#### [Bitmap](https://github.com/go-vgo/robotgo/blob/master/examples/bitmap/main.go)
+#### [位图](https://github.com/go-vgo/robotgo/blob/master/examples/bitmap/main.go)
 
 ```Go
 package main
@@ -196,17 +195,16 @@ func main() {
   bitmap := robotgo.CaptureScreen(10, 20, 30, 40)
   // use `defer robotgo.FreeBitmap(bit)` to free the bitmap
   defer robotgo.FreeBitmap(bitmap)
-
   fmt.Println("...", bitmap)
 
   fx, fy := robotgo.FindBitmap(bitmap)
-  fmt.Println("FindBitmap------ ", fx, fy)
+  fmt.Println("FindBitmap------", fx, fy)
 
   robotgo.SaveBitmap(bitmap, "test.png")
 } 
 ```
 
-#### [Event](https://github.com/go-vgo/robotgo/blob/master/examples/event/main.go)
+#### [事件](https://github.com/go-vgo/robotgo/blob/master/examples/event/main.go)
 
 ```Go
 package main
@@ -229,8 +227,7 @@ func main() {
   }
 } 
 ```
-
-#### [Window](https://github.com/go-vgo/robotgo/blob/master/examples/window/main.go)
+#### [窗口句柄](https://github.com/go-vgo/robotgo/blob/master/examples/window/main.go)
 
 ```Go
 package main
@@ -244,7 +241,7 @@ import (
 func main() {
   fpid, err := robotgo.FindIds("Google")
   if err == nil {
-    fmt.Println("pids... ", fpid)
+    fmt.Println("pids...", fpid)
 
     if len(fpid) > 0 {
       robotgo.ActivePID(fpid[0])
@@ -264,7 +261,7 @@ func main() {
 
   abool := robotgo.ShowAlert("test", "robotgo")
   if abool == 0 {
- 	  fmt.Println("ok@@@ ", "ok")
+    fmt.Println("ok@@@ ", "ok")
   }
 
   title := robotgo.GetTitle()
@@ -296,18 +293,17 @@ GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64
 * [Contributors](https://github.com/go-vgo/robotgo/graphs/contributors)
 
 ## Plans
-- Update Find an image on screen, read pixels from an image
-- Update Window Handle
-- Try support Android, maybe support IOS
+- 更新 Find an image on screen, read pixels from an image
+- 更新 Window Handle
+- 尝试支持 Android, 也许支持 IOS
 
 ## Donate
 
-Supporting robotgo, [buy me a coffee](https://github.com/go-vgo/buy-me-a-coffee).
+支持 robotgo, [buy me a coffee](https://github.com/go-vgo/buy-me-a-coffee).
 
 #### Paypal
 
 Donate money by [paypal](https://www.paypal.me/veni0/25) to my account [vzvway@gmail.com](vzvway@gmail.com)
-
 
 ## Contributors
 
