@@ -1,0 +1,60 @@
+sudo: false
+language: cpp
+
+os:
+  - linux
+  - osx
+
+env:
+  matrix:
+  # - TRAVIS_NODE_VERSION="0.10"
+  # - TRAVIS_NODE_VERSION="0.12"
+  - TRAVIS_NODE_VERSION="8"
+  - TRAVIS_NODE_VERSION="10"
+  - TRAVIS_NODE_VERSION="11"
+  - TRAVIS_NODE_VERSION="stable"
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libx11-dev
+      - zlib1g-dev
+      - libpng12-dev
+      - libxtst-dev
+      - g++-4.8
+      - gcc-4.8
+
+before_install:
+  # reinstall latest nvm
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
+  - PATH=$PATH:`pwd`/node_modules/.bin
+
+  # print versions
+  - node --version
+  - npm --version
+
+  # use g++-4.8 on Linux
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then export CXX=g++-4.8; fi
+  - $CXX --version
+
+before_script:
+  # Start xvfb
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then export DISPLAY=:99.0; fi
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+
+install:
+  - npm install
+
+script:
+  - npm test
+
+# notifications:
+#   webhooks:
+#     urls:
+#       - https://webhooks.gitter.im/e/
+#     on_success: change
+#     on_failure: always
+#     on_start: never
