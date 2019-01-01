@@ -3,6 +3,10 @@
 .vscode
 .idea
 
+build/
+node_modules/
+prebuilds/
+
 # Binaries for programs and plugins
 *.lib
 *.a
