@@ -1,9 +1,32 @@
+# Object files
+.DS_Store
+.vscode
+.idea
+
 # Binaries for programs and plugins
-*.exe
-*.exe~
+*.lib
+*.a
+!cdeps/mac/libpng.a
+!cdeps/win32/libpng.a
+!cdeps/win64/libpng.a
+#
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
 *.dll
 *.so
+*.so.*
 *.dylib
+
+# Executables
+*.exe
+*.exe~
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
 
 # Test binary, build with `go test -c`
 *.test
