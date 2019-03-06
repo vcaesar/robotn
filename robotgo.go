@@ -22,10 +22,8 @@ func sf(err error) string {
 
 //export GetVersion
 func GetVersion() *C.char {
-	str := robotgo.GetVersion()
-	ch := C.CString(str)
-
-	return ch
+	s := robotgo.GetVersion()
+	return ch(s)
 }
 
 //export Sleep
@@ -40,9 +38,8 @@ func MSleep(tm float64) {
 
 //export GetPixelColor
 func GetPixelColor(x, y int) *C.char {
-	str := robotgo.GetPixelColor(x, y)
-	ch := C.CString(str)
-	return ch
+	s := robotgo.GetPixelColor(x, y)
+	return ch(s)
 }
 
 //export GetScreenSize
@@ -53,6 +50,41 @@ func GetScreenSize() (int, int) {
 //export GetScaleSize
 func GetScaleSize() (int, int) {
 	return robotgo.GetScaleSize()
+}
+
+//export MoveMouse
+func MoveMouse(x, y int) {
+	robotgo.Move(x, y)
+}
+
+//export DragMouse
+func DragMouse(x, y int, args string) {
+	robotgo.Drag(x, y, args)
+}
+
+//export MoveSmooth
+func MoveSmooth(x, y int) bool {
+	return robotgo.MoveSmooth(x, y)
+}
+
+//export GetMousePos
+func GetMousePos() (int, int) {
+	return robotgo.GetMousePos()
+}
+
+//export Click
+func Click(btn *C.char, double bool) {
+	robotgo.Click(str(btn), double)
+}
+
+//export MouseToggle
+func MouseToggle(key, btn *C.char) {
+	robotgo.MouseToggle(str(key), str(btn))
+}
+
+//export Scroll
+func Scroll(x, y int) {
+	robotgo.Scroll(x, y)
 }
 
 func main() {} // Required but ignored
