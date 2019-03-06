@@ -87,4 +87,59 @@ func Scroll(x, y int) {
 	robotgo.Scroll(x, y)
 }
 
+//export TypeStr
+func TypeStr(c *C.char, args float64) {
+	robotgo.TypeStr(str(c), args)
+}
+
+//export FindPic
+func FindPic(path *C.char) (int, int) {
+	return robotgo.FindPic(str(path))
+}
+
+//export GetImgSize
+func GetImgSize(path *C.char) (int, int) {
+	return robotgo.GetImgSize(str(path))
+}
+
+//export AddEvent
+func AddEvent(key *C.char) bool {
+	return robotgo.AddEvent(str(key))
+}
+
+//export StopEvent
+func StopEvent() {
+	robotgo.StopEvent()
+}
+
+//export End
+func End() {
+	robotgo.End()
+}
+
+//export ShowAlert
+func ShowAlert(title, msg *C.char) int {
+	return robotgo.ShowAlert(str(title), str(msg))
+}
+
+//export ActivePID
+func ActivePID(pid int32) (c *C.char) {
+	err := robotgo.ActivePID(pid)
+	if err != nil {
+		c = ch(sf(err))
+	}
+
+	return
+}
+
+//export ActiveName
+func ActiveName(name *C.char) (c *C.char) {
+	err := robotgo.ActiveName(str(name))
+	if err != nil {
+		c = ch(sf(err))
+	}
+
+	return
+}
+
 func main() {} // Required but ignored
