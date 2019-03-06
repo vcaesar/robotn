@@ -3,10 +3,22 @@ package main
 import "C"
 
 import (
-	// "fmt"
+	"fmt"
 
 	"github.com/go-vgo/robotgo"
 )
+
+func ch(str string) *C.char {
+	return C.CString(str)
+}
+
+func str(ch *C.char) string {
+	return C.GoString(ch)
+}
+
+func sf(err error) string {
+	return fmt.Sprintf("%s", err)
+}
 
 //export GetVersion
 func GetVersion() *C.char {
