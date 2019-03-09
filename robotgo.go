@@ -71,6 +71,11 @@ func GetScaleSize() (int, int) {
 	return robotgo.GetScaleSize()
 }
 
+//export SaveCapture
+func SaveCapture(path *C.char, x, y, w, h int) {
+	robotgo.SaveCapture(str(path), x, y, w, h)
+}
+
 /*
 .___  ___.   ______    __    __       _______. _______
 |   \/   |  /  __  \  |  |  |  |     /       ||   ____|
@@ -148,6 +153,22 @@ func FindPic(path *C.char) (int, int) {
 //export GetImgSize
 func GetImgSize(path *C.char) (int, int) {
 	return robotgo.GetImgSize(str(path))
+}
+
+//export ReadAll
+func ReadAll() (*C.char, *C.char) {
+	s, err := robotgo.ReadAll()
+	return ch(s), ch(sf(err))
+}
+
+//export WriteAll
+func WriteAll(text *C.char) {
+	robotgo.WriteAll(str(text))
+}
+
+//export PasteStr
+func PasteStr(text *C.char) {
+	robotgo.PasteStr(str(text))
 }
 
 /*
