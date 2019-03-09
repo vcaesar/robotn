@@ -136,25 +136,6 @@ func TypeStr(c *C.char, args float64) {
 	robotgo.TypeStr(str(c), args)
 }
 
-/*
-.______    __  .___________..___  ___.      ___      .______
-|   _  \  |  | |           ||   \/   |     /   \     |   _  \
-|  |_)  | |  | `---|  |----`|  \  /  |    /  ^  \    |  |_)  |
-|   _  <  |  |     |  |     |  |\/|  |   /  /_\  \   |   ___/
-|  |_)  | |  |     |  |     |  |  |  |  /  _____  \  |  |
-|______/  |__|     |__|     |__|  |__| /__/     \__\ | _|
-*/
-
-//export FindPic
-func FindPic(path *C.char) (int, int) {
-	return robotgo.FindPic(str(path))
-}
-
-//export GetImgSize
-func GetImgSize(path *C.char) (int, int) {
-	return robotgo.GetImgSize(str(path))
-}
-
 //export ReadAll
 func ReadAll() (*C.char, *C.char) {
 	s, err := robotgo.ReadAll()
@@ -169,6 +150,31 @@ func WriteAll(text *C.char) {
 //export PasteStr
 func PasteStr(text *C.char) {
 	robotgo.PasteStr(str(text))
+}
+
+/*
+.______    __  .___________..___  ___.      ___      .______
+|   _  \  |  | |           ||   \/   |     /   \     |   _  \
+|  |_)  | |  | `---|  |----`|  \  /  |    /  ^  \    |  |_)  |
+|   _  <  |  |     |  |     |  |\/|  |   /  /_\  \   |   ___/
+|  |_)  | |  |     |  |     |  |  |  |  /  _____  \  |  |
+|______/  |__|     |__|     |__|  |__| /__/     \__\ | _|
+*/
+
+//export GetText
+func GetText(path *C.char) (*C.char, *C.char) {
+	s, err := robotgo.GetText(str(path))
+	return ch(s), ch(sf(err))
+}
+
+//export FindPic
+func FindPic(path *C.char) (int, int) {
+	return robotgo.FindPic(str(path))
+}
+
+//export GetImgSize
+func GetImgSize(path *C.char) (int, int) {
+	return robotgo.GetImgSize(str(path))
 }
 
 /*
