@@ -30,6 +30,10 @@ func sf(err error) string {
 	return fmt.Sprintf("%s", err)
 }
 
+func ech(err error) *C.char {
+	return ch(sf(err))
+}
+
 //export GetVersion
 func GetVersion() *C.char {
 	s := robotgo.GetVersion()
@@ -139,7 +143,7 @@ func TypeStr(c *C.char, args float64) {
 //export ReadAll
 func ReadAll() (*C.char, *C.char) {
 	s, err := robotgo.ReadAll()
-	return ch(s), ch(sf(err))
+	return ch(s), ech(err)
 }
 
 //export WriteAll
@@ -164,7 +168,7 @@ func PasteStr(text *C.char) {
 //export GetText
 func GetText(path *C.char) (*C.char, *C.char) {
 	s, err := robotgo.GetText(str(path))
-	return ch(s), ch(sf(err))
+	return ch(s), ech(err)
 }
 
 //export FindPic
@@ -220,7 +224,7 @@ func ShowAlert(title, msg *C.char) int {
 func ActivePID(pid int32) (c *C.char) {
 	err := robotgo.ActivePID(pid)
 	if err != nil {
-		c = ch(sf(err))
+		c = ech(err)
 	}
 
 	return
@@ -230,7 +234,7 @@ func ActivePID(pid int32) (c *C.char) {
 func ActiveName(name *C.char) (c *C.char) {
 	err := robotgo.ActiveName(str(name))
 	if err != nil {
-		c = ch(sf(err))
+		c = ech(err)
 	}
 
 	return
