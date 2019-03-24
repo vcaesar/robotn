@@ -15,6 +15,15 @@ var lib = ffi.Library("robotgo", {
     'GetPixelColor': ['string', ['long', 'long']],
     'GetScreenSize': [GoInt, []],
     'GetScaleSize': [GoInt, []],
+    //
+    'MoveMouse': ['void', ['long', 'long']],
+    'DragMouse': ['void', ['long', 'long', "string"]],
+    'MoveSmooth': ['void', ['long', 'long']],
+    'GetMousePos': [GoInt, []],
+    'Click': ['void', ['string', 'bool']],
+    'MouseToggle': ['void', ['string', 'string']],
+    'Scroll': ['void', ['long', 'long']],
+    //
     'ActivePID': ['string', ['long']],
 });
 

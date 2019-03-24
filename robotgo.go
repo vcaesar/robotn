@@ -96,8 +96,8 @@ func MoveMouse(x, y int) {
 }
 
 //export DragMouse
-func DragMouse(x, y int, args string) {
-	robotgo.Drag(x, y, args)
+func DragMouse(x, y int, args *C.char) {
+	robotgo.Drag(x, y, str(args))
 }
 
 //export MoveSmooth
