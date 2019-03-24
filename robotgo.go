@@ -14,6 +14,7 @@ import "C"
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/go-vgo/robotgo"
 )
@@ -32,6 +33,10 @@ func sf(err error) string {
 
 func ech(err error) *C.char {
 	return ch(sf(err))
+}
+
+func toStr(arr interface{}) string {
+	return strings.Trim(fmt.Sprint(arr), "[]")
 }
 
 //export GetVersion
@@ -218,6 +223,18 @@ ____    __    ____  __  .__   __.  _______   ______   ____    __    ____
 //export ShowAlert
 func ShowAlert(title, msg *C.char) int {
 	return robotgo.ShowAlert(str(title), str(msg))
+}
+
+//export FindIds
+func FindIds(name *C.char) (*C.char, *C.char) {
+	arr, err := robotgo.FindIds(str(name))
+	sb := toStr(arr)
+
+	if err != nil {
+		return ch(sb), ech(err)
+	}
+
+	return ch(sb), ch("")
 }
 
 //export ActivePID

@@ -33,7 +33,9 @@ var lib = ffi.Library("robotgo", {
     'WriteAll': ['void', ['string']],
     'PasteStr': ['void', ['string']],
     //
+    'FindIds': [GoStr, ['string']],
     'ActivePID': ['string', ['long']],
+    'ActiveName': ['string', ['string']],
 });
 
 // module.exports = robotn
