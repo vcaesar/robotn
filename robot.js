@@ -33,6 +33,10 @@ var lib = ffi.Library("robotgo", {
     'WriteAll': ['void', ['string']],
     'PasteStr': ['void', ['string']],
     //
+    'GetText': [GoStr, ['string']],
+    'FindPic': [GoInt, ['string']],
+    'GetImgSize': [GoInt, ['string']],
+    //
     'FindIds': [GoStr, ['string']],
     'ActivePID': ['string', ['long']],
     'ActiveName': ['string', ['string']],
