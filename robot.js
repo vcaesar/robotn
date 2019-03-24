@@ -10,6 +10,10 @@ var GoInt = Struct({
     y: "int"
 });
 
+var GoStr = Struct({
+    arr: 'string',
+    err: 'string'
+});
 
 var lib = ffi.Library("robotgo", {
     'GetPixelColor': ['string', ['long', 'long']],
@@ -23,6 +27,11 @@ var lib = ffi.Library("robotgo", {
     'Click': ['void', ['string', 'bool']],
     'MouseToggle': ['void', ['string', 'string']],
     'Scroll': ['void', ['long', 'long']],
+    //
+    'TypeStr': ['void', ['string', 'double']],
+    'ReadAll': [GoStr, []],
+    'WriteAll': ['void', ['string']],
+    'PasteStr': ['void', ['string']],
     //
     'ActivePID': ['string', ['long']],
 });
