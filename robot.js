@@ -39,6 +39,11 @@ var lib = ffi.Library("robotgo", {
     'FindPic': [GoInt, ['string']],
     'GetImgSize': [GoInt, ['string']],
     //
+    'AddEvent': ['bool', ['string']],
+    'StopEvent': ['void', []],
+    'AddEvents': ['bool', ['string', 'string']],
+    'End': ['void', []],
+    //
     'FindIds': [GoStr, ['string']],
     'ActivePID': ['string', ['long']],
     'ActiveName': ['string', ['string']],

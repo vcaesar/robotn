@@ -223,6 +223,12 @@ func End() {
 	robotgo.End()
 }
 
+//export AddEvents
+func AddEvents(key, args *C.char) bool {
+	arr := strings.Split(str(args), ",")
+	return robotgo.AddEvents(str(key), arr...)
+}
+
 /*
 ____    __    ____  __  .__   __.  _______   ______   ____    __    ____
 \   \  /  \  /   / |  | |  \ |  | |       \ /  __  \  \   \  /  \  /   /
