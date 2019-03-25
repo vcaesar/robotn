@@ -28,6 +28,8 @@ var lib = ffi.Library("robotgo", {
     'MouseToggle': ['void', ['string', 'string']],
     'Scroll': ['void', ['long', 'long']],
     //
+    'KeyTap': ['string', ['string', 'string']],
+    'KeyToggle': ['string', ['string']],
     'TypeStr': ['void', ['string', 'double']],
     'ReadAll': [GoStr, []],
     'WriteAll': ['void', ['string']],

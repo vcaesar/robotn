@@ -140,6 +140,19 @@ func Scroll(x, y int) {
 
 */
 
+//export KeyTap
+func KeyTap(key *C.char, vals *C.char) *C.char {
+	arr := strings.Split(str(vals), ",")
+	s := robotgo.KeyTap(str(key), arr)
+	return ch(s)
+}
+
+//export KeyToggle
+func KeyToggle(key *C.char) *C.char {
+	s := robotgo.KeyToggle(str(key))
+	return ch(s)
+}
+
 //export TypeStr
 func TypeStr(c *C.char, args float64) {
 	robotgo.TypeStr(str(c), args)
