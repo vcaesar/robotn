@@ -169,5 +169,53 @@ function pasteStr(str) {
     lib.PasteStr(str);
 }
 
+//
+function getText(path) {
+    var s = lib.GetText(path);
+
+    if (s.err === "") {
+        return s.arr;
+    }
+
+    return s.err;
+}
+
+function findPic(path) {
+    var s = lib.FindPic(path);
+
+    return {
+        x: s.x,
+        y: s.y
+    };
+}
+
+function getImgSize(path) {
+    var s = lib.GetImgSize(path);
+
+    return {
+        width: s.x,
+        height: s.y
+    };
+}
+
+//
+function addEvent(key) {
+    return lib.addEvent(key);
+}
+
+function stopEvent() {
+    lib.StopEvent();
+}
+
+function addEvents(str, ...args) {
+    var arr = arrAdd(args);
+
+    return lib.AddEvents(str, arr);
+}
+
+function end() {
+    lib.End();
+}
+
 // module.exports = robotn
 exports.getPixelColor = getPixelColor;
