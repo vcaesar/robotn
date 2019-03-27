@@ -240,4 +240,39 @@ function activeName(name) {
 }
 
 // module.exports = robotn
+exports.getVersion = getVersion;
+exports.sleep = sleep;
+exports.MSleep = MSleep;
+//
 exports.getPixelColor = getPixelColor;
+exports.getScreenSize = getScreenSize;
+exports.getScaleSize = getScaleSize;
+//
+exports.moveMouse = moveMouse;
+exports.dragMouse = dragMouse;
+exports.moveSmooth = moveSmooth;
+exports.getMousePos = getMousePos;
+exports.click = click;
+exports.mouseToggle = mouseToggle;
+exports.scroll = scroll;
+//
+exports.keyTap = keyTap;
+exports.keyToggle = keyToggle;
+exports.typeStr = typeStr;
+exports.readAll = readAll;
+exports.writeAll = writeAll;
+exports.pasteStr = pasteStr;
+//
+exports.getText = getText;
+exports.findPic = findPic;
+exports.getImgSize = getImgSize;
+//
+exports.addEvent = addEvent;
+exports.addEvents = addEvents;
+exports.stopEvent = stopEvent;
+exports.end = end;
+//
+exports.showAlert = showAlert;
+exports.findIds = findIds;
+exports.activePID = activePID;
+exports.activeName = activeName;
