@@ -122,6 +122,52 @@ function scroll(x, y) {
     lib.Scroll(x, y);
 }
 
+//
+function arrAdd(args) {
+    var arr = "";
+    for (let i = 0; i < args.length; i++) {
+        if (i < args.length - 1) {
+            arr += args[i] + ",";
+        } else {
+            arr += args[i]
+        }
+    }
+
+    return arr;
+}
+
+function keyTap(str, ...args) {
+    var arr = arrAdd(args);
+
+    return lib.KeyTap(str, arr);
+}
+
+function keyToggle(str) {
+    return lib.KeyToggle(str);
+}
+
+function typeStr(str, args = 3.0) {
+    lib.TypeStr(str, args);
+}
+
+function readAll() {
+    var s = lib.ReadAll();
+
+    if (s.err === "") {
+        return s.arr;
+    }
+
+    return s.err;
+
+}
+
+function writeAll(str) {
+    lib.WriteAll(str);
+}
+
+function pasteStr(str) {
+    lib.PasteStr(str);
+}
 
 // module.exports = robotn
 exports.getPixelColor = getPixelColor;
