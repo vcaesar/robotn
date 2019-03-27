@@ -47,10 +47,23 @@ var lib = ffi.Library(bin, {
     'AddEvents': ['bool', ['string', 'string']],
     'End': ['void', []],
     //
+    'ShowAlert': ['int', ['string', 'string']],
     'FindIds': [GoStr, ['string']],
     'ActivePID': ['string', ['long']],
     'ActiveName': ['string', ['string']],
 });
+
+function sleep(tm) {
+    lib.Sleep(tm);
+}
+
+function MSleep(tm) {
+    lib.MSleep(tm);
+}
+
+function getVersion() {
+    return lib.GetVersion();
+}
 
 function getPixelColor(x, y) {
     return lib.GetPixelColor(x, y);
