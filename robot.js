@@ -217,5 +217,27 @@ function end() {
     lib.End();
 }
 
+//
+function showAlert(title, msg) {
+    return lib.ShowAlert(title, msg);
+}
+
+function findIds(name) {
+    var s = lib.FindIds(name);
+    if (s.err === "") {
+        return s.arr.split(" ");
+    }
+
+    return s.err;
+}
+
+function activePID(pid) {
+    return lib.ActivePID(pid);
+}
+
+function activeName(name) {
+    return lib.ActiveName(name);
+}
+
 // module.exports = robotn
 exports.getPixelColor = getPixelColor;
