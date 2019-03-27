@@ -1,5 +1,6 @@
 // var ffi = require('ffi-napi');
-var ffi = require('ffi')
+var ffi = require('ffi');
+const path = require('path');
 
 // var ref = require('ref');
 var Struct = require("ref-struct");
@@ -15,7 +16,9 @@ var GoStr = Struct({
     err: 'string'
 });
 
-var lib = ffi.Library("robotgo", {
+const bin = path.join(__dirname, './robotgo');
+
+var lib = ffi.Library(bin, {
     'GetPixelColor': ['string', ['long', 'long']],
     'GetScreenSize': [GoInt, []],
     'GetScaleSize': [GoInt, []],
@@ -49,8 +52,6 @@ var lib = ffi.Library("robotgo", {
     'ActiveName': ['string', ['string']],
 });
 
-// module.exports = robotn
-
 function getPixelColor(x, y) {
     return lib.GetPixelColor(x, y);
 }
@@ -72,3 +73,6 @@ function getScaleSize() {
         height: s.y
     };
 }
+
+// module.exports = robotn
+exports.getPixelColor = getPixelColor;
