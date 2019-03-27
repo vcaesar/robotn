@@ -87,5 +87,41 @@ function getScaleSize() {
     };
 }
 
+
+//
+function moveMouse(x, y) {
+    lib.MoveMouse(x, y);
+}
+
+function dragMouse(x, y, btn = "left") {
+    lib.DragMouse(x, y, btn);
+}
+
+function moveSmooth(x, y) {
+    lib.moveSmooth(x, y);
+}
+
+function getMousePos() {
+    var s = lib.GetMousePos();
+
+    return {
+        x: s.x,
+        y: s.y
+    };
+}
+
+function click(btn, double = false) {
+    lib.Click(btn, double);
+}
+
+function mouseToggle(key, btn) {
+    lib.MouseToggle(key, btn);
+}
+
+function scroll(x, y) {
+    lib.Scroll(x, y);
+}
+
+
 // module.exports = robotn
 exports.getPixelColor = getPixelColor;
