@@ -148,8 +148,9 @@ func KeyTap(key *C.char, vals *C.char) *C.char {
 }
 
 //export KeyToggle
-func KeyToggle(key *C.char) *C.char {
-	s := robotgo.KeyToggle(str(key))
+func KeyToggle(key *C.char, vals *C.char) *C.char {
+	arr := strings.Split(str(vals), ",")
+	s := robotgo.KeyToggle(str(key), arr...)
 	return ch(s)
 }
 

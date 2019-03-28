@@ -32,7 +32,7 @@ var lib = ffi.Library(bin, {
     'Scroll': ['void', ['long', 'long']],
     //
     'KeyTap': ['string', ['string', 'string']],
-    'KeyToggle': ['string', ['string']],
+    'KeyToggle': ['string', ['string', 'string']],
     'TypeStr': ['void', ['string', 'double']],
     'ReadAll': [GoStr, []],
     'WriteAll': ['void', ['string']],
@@ -138,11 +138,11 @@ function arrAdd(args) {
 
 function keyTap(str, ...args) {
     var arr = arrAdd(args);
-
     return lib.KeyTap(str, arr);
 }
 
-function keyToggle(str) {
+function keyToggle(str, ...args) {
+    var arr = arrAdd(args);
     return lib.KeyToggle(str);
 }
 
@@ -152,7 +152,6 @@ function typeStr(str, args = 3.0) {
 
 function readAll() {
     var s = lib.ReadAll();
-
     if (s.err === "") {
         return s.arr;
     }
@@ -172,7 +171,6 @@ function pasteStr(str) {
 //
 function getText(path) {
     var s = lib.GetText(path);
-
     if (s.err === "") {
         return s.arr;
     }
