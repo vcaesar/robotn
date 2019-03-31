@@ -245,9 +245,58 @@ func ShowAlert(title, msg *C.char) int {
 	return robotgo.ShowAlert(str(title), str(msg))
 }
 
+//export GetTitle
+func GetTitle(pid int32) *C.char {
+	if pid == -1 {
+		title := robotgo.GetTitle()
+		return ch(title)
+	}
+
+	title := robotgo.GetTitle(pid)
+	return ch(title)
+}
+
+//export GetBounds
+func GetBounds(pid int32) (int, int, int, int) {
+	return robotgo.GetBounds(pid)
+}
+
+//export PidExists
+func PidExists(pid int32) (bool, *C.char) {
+	b, err := robotgo.PidExists(pid)
+	if err != nil {
+		return b, ech(err)
+	}
+
+	return b, ch("")
+}
+
 //export FindIds
 func FindIds(name *C.char) (*C.char, *C.char) {
 	arr, err := robotgo.FindIds(str(name))
+	sb := toStr(arr)
+
+	if err != nil {
+		return ch(sb), ech(err)
+	}
+
+	return ch(sb), ch("")
+}
+
+//export FindName
+func FindName(pid int32) (*C.char, *C.char) {
+	sb, err := robotgo.FindName(pid)
+
+	if err != nil {
+		return ch(sb), ech(err)
+	}
+
+	return ch(sb), ch("")
+}
+
+//export FindNames
+func FindNames() (*C.char, *C.char) {
+	arr, err := robotgo.FindNames()
 	sb := toStr(arr)
 
 	if err != nil {
@@ -275,6 +324,16 @@ func ActiveName(name *C.char) (c *C.char) {
 	}
 
 	return
+}
+
+//export Kill
+func Kill(pid int32) *C.char {
+	err := robotgo.Kill(pid)
+	if err != nil {
+		return ech(err)
+	}
+
+	return ch("")
 }
 
 func main() {} // Required but ignored
