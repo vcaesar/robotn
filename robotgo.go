@@ -184,10 +184,104 @@ func PasteStr(text *C.char) {
 |______/  |__|     |__|     |__|  |__| /__/     \__\ | _|
 */
 
+func toBitmap(imgBuf *uint8, width, height, bytewidth int,
+	bitsPixel, bytesPerPixel uint8) robotgo.Bitmap {
+
+	return robotgo.Bitmap{
+		ImgBuf:        imgBuf,
+		Width:         width,
+		Height:        height,
+		Bytewidth:     bytewidth,
+		BitsPixel:     bitsPixel,
+		BytesPerPixel: bytesPerPixel,
+	}
+}
+
 //export GetText
 func GetText(path *C.char) (*C.char, *C.char) {
 	s, err := robotgo.GetText(str(path))
 	return ch(s), ech(err)
+}
+
+//export OpenBitmapArgs
+func OpenBitmapArgs(path *C.char) (*uint8, int, int, int,
+	uint8, uint8) {
+	cbit := robotgo.OpenBitmap(str(path))
+	gbit := robotgo.ToBitmap(cbit)
+
+	return gbit.ImgBuf, gbit.Width, gbit.Height, gbit.Bytewidth,
+		gbit.BitsPixel, gbit.BytesPerPixel
+}
+
+//export FindBitmapArgs
+func FindBitmapArgs(imgBuf *uint8, width, height, bytewidth int,
+	bitsPixel, bytesPerPixel uint8) (int, int) {
+	gbit := toBitmap(imgBuf, width, height, bytewidth, bitsPixel, bytesPerPixel)
+	cbit := robotgo.ToCBitmap(gbit)
+
+	return robotgo.FindBitmap(cbit)
+}
+
+//export SaveBitmapArgs
+func SaveBitmapArgs(path *C.char, imgBuf *uint8, width, height, bytewidth int,
+	bitsPixel, bytesPerPixel uint8) *C.char {
+
+	gbit := toBitmap(imgBuf, width, height, bytewidth, bitsPixel, bytesPerPixel)
+	cbit := robotgo.ToCBitmap(gbit)
+
+	s := robotgo.SaveBitmap(cbit, str(path))
+	return ch(s)
+}
+
+//export ToStrBitmap
+func ToStrBitmap(imgBuf *uint8, width, height, bytewidth int,
+	bitsPixel, bytesPerPixel uint8) *C.char {
+
+	gbit := toBitmap(imgBuf, width, height, bytewidth, bitsPixel, bytesPerPixel)
+	cbit := robotgo.ToCBitmap(gbit)
+	b := robotgo.TostringBitmap(cbit)
+
+	return ch(b)
+}
+
+//export BitmapFromStr
+func BitmapFromStr(bit *C.char) (*uint8, int, int, int,
+	uint8, uint8) {
+	cbit := robotgo.BitmapFromStr(str(bit))
+	gbit := robotgo.ToBitmap(cbit)
+
+	return gbit.ImgBuf, gbit.Width, gbit.Height, gbit.Bytewidth,
+		gbit.BitsPixel, gbit.BytesPerPixel
+}
+
+//export CaptureBitmapStr
+func CaptureBitmapStr(x, y, w, h int) *C.char {
+	bit := robotgo.CaptureScreen(x, y, w, h)
+	str := robotgo.TostringBitmap(bit)
+
+	return ch(str)
+}
+
+//export OpenBitmapStr
+func OpenBitmapStr(path *C.char) *C.char {
+	bit := robotgo.OpenBitmap(str(path))
+	s := robotgo.TostringBitmap(bit)
+
+	return ch(s)
+}
+
+//export SaveBitmapStr
+func SaveBitmapStr(bit, path *C.char) *C.char {
+	bitmap := robotgo.BitmapStr(str(bit))
+	err := robotgo.SaveBitmap(bitmap, str(path))
+
+	return ch(err)
+}
+
+//export FindBitmapStr
+func FindBitmapStr(c *C.char) (int, int) {
+	bit := robotgo.BitmapStr(str(c))
+	return robotgo.FindBitmap(bit)
 }
 
 //export FindPic
@@ -198,6 +292,20 @@ func FindPic(path *C.char) (int, int) {
 //export GetImgSize
 func GetImgSize(path *C.char) (int, int) {
 	return robotgo.GetImgSize(str(path))
+}
+
+//export FindColor
+func FindColor(color uint32) (int, int) {
+	x, y := robotgo.FindColor(robotgo.UintToHex(color))
+
+	return x, y
+}
+
+//export FindColorCS
+func FindColorCS(color uint32, x, y, w, h int) (int, int) {
+	fx, fy := robotgo.FindColorCS(robotgo.UintToHex(color), x, y, w, h)
+
+	return fx, fy
 }
 
 /*
