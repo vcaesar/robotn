@@ -80,6 +80,15 @@ func GetScaleSize() (int, int) {
 	return robotgo.GetScaleSize()
 }
 
+//export CaptureScreen
+func CaptureScreen(x, y, w, h int) (*uint8, int, int,
+	int, uint8, uint8) {
+	bit := robotgo.GoCaptureScreen(x, y, w, h)
+
+	return bit.ImgBuf, bit.Width, bit.Height,
+		bit.Bytewidth, bit.BitsPixel, bit.BytesPerPixel
+}
+
 //export SaveCapture
 func SaveCapture(path *C.char, x, y, w, h int) {
 	robotgo.SaveCapture(str(path), x, y, w, h)
@@ -211,6 +220,15 @@ func OpenBitmapArgs(path *C.char) (*uint8, int, int, int,
 
 	return gbit.ImgBuf, gbit.Width, gbit.Height, gbit.Bytewidth,
 		gbit.BitsPixel, gbit.BytesPerPixel
+}
+
+//export FreeBitmap
+func FreeBitmap(imgBuf *uint8, width, height, bytewidth int,
+	bitsPixel, bytesPerPixel uint8) {
+
+	gbit := toBitmap(imgBuf, width, height, bytewidth, bitsPixel, bytesPerPixel)
+	cbit := robotgo.ToCBitmap(gbit)
+	robotgo.FreeBitmap(cbit)
 }
 
 //export FindBitmapArgs
