@@ -219,15 +219,33 @@ func StopEvent() {
 	robotgo.StopEvent()
 }
 
+//export AddEvents
+func AddEvents(key, args *C.char) bool {
+	arr := strings.Split(str(args), ",")
+	return robotgo.AddEvents(str(key), arr...)
+}
+
 //export End
 func End() {
 	robotgo.End()
 }
 
-//export AddEvents
-func AddEvents(key, args *C.char) bool {
-	arr := strings.Split(str(args), ",")
-	return robotgo.AddEvents(str(key), arr...)
+//export AddMouse
+func AddMouse(btn *C.char, x, y int16) bool {
+	if x == -1 {
+		b := robotgo.AddMouse(str(btn))
+		return b
+	}
+
+	b := robotgo.AddMouse(str(btn), x, y)
+	return b
+}
+
+//export AddMousePos
+func AddMousePos(x, y int16) bool {
+	b := robotgo.AddMousePos(x, y)
+
+	return b
 }
 
 /*
