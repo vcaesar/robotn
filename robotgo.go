@@ -102,6 +102,11 @@ func CaptureScreen(x, y, w, h int) (*uint8, int, int,
 
 //export SaveCapture
 func SaveCapture(path *C.char, x, y, w, h int) {
+	if x == -1 {
+		robotgo.SaveCapture(str(path))
+		return
+	}
+	
 	robotgo.SaveCapture(str(path), x, y, w, h)
 }
 

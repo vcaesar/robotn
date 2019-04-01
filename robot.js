@@ -146,6 +146,10 @@ function getPixelColor(x, y) {
     return lib.GetPixelColor(x, y);
 }
 
+function getMouseColor() {
+    return lib.GetMouseColor();
+}
+
 function getScreenSize() {
     var s = lib.GetScreenSize();
     return {
@@ -160,6 +164,10 @@ function getScaleSize() {
         width: s.x,
         height: s.y
     };
+}
+
+function saveCapture(path, x = -1, y = -1, w = -1, h = -1) {
+    lib.SaveCapture(path, x, y, w, h);
 }
 
 /*
@@ -522,8 +530,10 @@ exports.sleep = sleep;
 exports.MSleep = MSleep;
 //
 exports.getPixelColor = getPixelColor;
+exports.getMouseColor = getMouseColor;
 exports.getScreenSize = getScreenSize;
 exports.getScaleSize = getScaleSize;
+exports.saveCapture = saveCapture;
 //
 exports.moveMouse = moveMouse;
 exports.dragMouse = dragMouse;
