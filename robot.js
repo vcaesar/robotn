@@ -235,6 +235,116 @@ function getText(path) {
     return s.err;
 }
 
+function captureScreen(x, y, w, h) {
+    var bit = lib.CaptureScreenAll(x, y, w, h);
+
+    return toObj(bit);
+}
+
+function toStrBitmap(bit) {
+    return lib.toStrBitmap(bit.imgBuf,
+        bit.width,
+        bit.height,
+        bit.bytewidth,
+        bit.bitsPixel,
+        bit.bytesPerPixel);
+}
+
+function bitmapFromStr(str) {
+    var bit = lib.BitmapFromStr(str);
+    return toObj(bit);
+}
+
+function captureBitmapStr(x, y, w, h) {
+    return lib.CaptureBitmapStr(x, y, w, h);
+}
+
+function openBitmapStr(path) {
+    return lib.OpenBitmapStr(path);
+}
+
+function findBitmapStr(str) {
+    var s = lib.FindBitmapStr(str);
+    return {
+        x: s.x,
+        y: s.y
+    };
+}
+
+function saveBitmapStr(str, path) {
+    return lib.SaveBitmapStr(str, path);
+}
+
+function toObj(bit) {
+    return {
+        imgBuf: bit.imgBuf,
+        width: bit.width,
+        height: bit.height,
+        bytewidth: bit.bytewidth,
+        bitsPixel: bit.bitsPixel,
+        bytesPerPixel: bit.bytesPerPixel
+    }
+}
+
+function freeBitmap(bit) {
+    lib.FreeBitmap(
+        bit.imgBuf,
+        bit.width,
+        bit.height,
+        bit.bytewidth,
+        bit.bitsPixel,
+        bit.bytesPerPixel);
+}
+
+function openBitmap(path) {
+    var bit = lib.OpenBitmapArgs(path);
+    return toObj(bit);
+}
+
+function saveBitmap(bit, path) {
+    return lib.SaveBitmapArgs(path,
+        bit.imgBuf,
+        bit.width,
+        bit.height,
+        bit.bytewidth,
+        bit.bitsPixel,
+        bit.bytesPerPixel);
+}
+
+
+function findBitmap(bit) {
+    var s = lib.FindBitmapArgs(
+        bit.imgBuf,
+        bit.width,
+        bit.height,
+        bit.bytewidth,
+        bit.bitsPixel,
+        bit.bytesPerPixel
+    );
+
+    return {
+        x: s.x,
+        y: s.y
+    };
+}
+
+function findColor(color) {
+    var s = lib.FindColor(color);
+    return {
+        x: s.x,
+        y: s.y
+    };
+}
+
+function findColorCS(color, x, y, w, h) {
+    var s = lib.FindColorCS(color, x, y, w, h);
+    return {
+        x: s.x,
+        y: s.y
+    };
+}
+
+
 function findPic(path) {
     var s = lib.FindPic(path);
 
@@ -270,6 +380,14 @@ function addEvents(str, ...args) {
 
 function end() {
     lib.End();
+}
+
+function addMouse(btn, x = -1, y = -1) {
+    return lib.AddMouse(btn, x, y);
+}
+
+function addMousePos(x, y) {
+    return lib.AddMousePos(x, y);
 }
 
 //
