@@ -277,8 +277,50 @@ function showAlert(title, msg) {
     return lib.ShowAlert(title, msg);
 }
 
+function getTitle(pid = -1) {
+    var s = lib.GetTitle(pid);
+    return s;
+}
+
+function getBounds(name) {
+    var s = lib.GetBounds(name);
+    return {
+        x: s.x,
+        y: s.y,
+        w: s.w,
+        h: s.h
+    };
+}
+
+function pidExists(pid) {
+    var s = lib.PidExists(pid);
+    if (s.err === "") {
+        return s.b;
+    }
+
+    return s.err;
+}
+
 function findIds(name) {
     var s = lib.FindIds(name);
+    if (s.err === "") {
+        return s.arr.split(" ");
+    }
+
+    return s.err;
+}
+
+function findName(pid) {
+    var s = lib.FindName(pid);
+    if (s.err === "") {
+        return s.arr.split(" ");
+    }
+
+    return s.err;
+}
+
+function findNames() {
+    var s = lib.FindNames();
     if (s.err === "") {
         return s.arr.split(" ");
     }
@@ -292,6 +334,10 @@ function activePID(pid) {
 
 function activeName(name) {
     return lib.ActiveName(name);
+}
+
+function kill(pid) {
+    return lib.Kill(pid);
 }
 
 // module.exports = robotn
