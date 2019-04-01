@@ -2,9 +2,11 @@
 var ffi = require('ffi');
 const path = require('path');
 
-// var ref = require('ref');
+var ref = require('ref');
 var Struct = require("ref-struct");
 // var ArrayType = require('ref-array');
+
+var long = ref.types.long;
 
 var GoInt = Struct({
     x: "int",
@@ -15,6 +17,27 @@ var GoStr = Struct({
     arr: 'string',
     err: 'string'
 });
+
+var GoBool = Struct({
+    b: 'bool',
+    err: 'string'
+})
+
+var GoBoud = Struct({
+    x: 'long',
+    y: 'long',
+    w: 'long',
+    h: 'long'
+})
+
+var bitmap = Struct({
+    imgBuf: long,
+    width: 'long',
+    height: 'long',
+    bytewidth: 'long',
+    bitsPixel: 'uint8',
+    bytesPerPixel: 'uint8'
+})
 
 const bin = path.join(__dirname, './robotgo');
 

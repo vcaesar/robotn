@@ -70,6 +70,12 @@ func GetPixelColor(x, y int) *C.char {
 	return ch(s)
 }
 
+//export GetMouseColor
+func GetMouseColor() *C.char {
+	s := robotgo.GetMouseColor()
+	return ch(s)
+}
+
 //export GetScreenSize
 func GetScreenSize() (int, int) {
 	return robotgo.GetScreenSize()
