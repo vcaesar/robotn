@@ -1,3 +1,13 @@
+// Copyright 2016 The go-vgo Project Developers. See the COPYRIGHT
+// file at the top-level directory of this distribution and at
+// https://github.com/go-vgo/robotgo/blob/master/LICENSE
+//
+// Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
+// http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
+// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your
+// option. This file may not be copied, modified, or distributed
+// except according to those terms.
+
 // var ffi = require('ffi-napi');
 var ffi = require('ffi');
 const path = require('path');
@@ -129,7 +139,6 @@ function getPixelColor(x, y) {
 
 function getScreenSize() {
     var s = lib.GetScreenSize();
-
     return {
         width: s.x,
         height: s.y
@@ -138,13 +147,11 @@ function getScreenSize() {
 
 function getScaleSize() {
     var s = lib.GetScaleSize();
-
     return {
         width: s.x,
         height: s.y
     };
 }
-
 
 //
 function moveMouse(x, y) {
@@ -200,7 +207,7 @@ function keyTap(str, ...args) {
 
 function keyToggle(str, ...args) {
     var arr = arrAdd(args);
-    return lib.KeyToggle(str);
+    return lib.KeyToggle(str, arr);
 }
 
 function typeStr(str, args = 3.0) {
@@ -214,7 +221,6 @@ function readAll() {
     }
 
     return s.err;
-
 }
 
 function writeAll(str) {
@@ -485,13 +491,36 @@ exports.pasteStr = pasteStr;
 exports.getText = getText;
 exports.findPic = findPic;
 exports.getImgSize = getImgSize;
+
+exports.captureScreen = captureScreen;
+exports.freeBitmap = freeBitmap;
+exports.openBitmap = openBitmap;
+exports.saveBitmap = saveBitmap;
+exports.findBitmap = findBitmap;
+exports.findColor = findColor;
+exports.findColorCS = findColorCS;
+
+exports.toStrBitmap = toStrBitmap;
+exports.bitmapFromStr = bitmapFromStr;
+exports.captureBitmapStr = captureBitmapStr;
+exports.openBitmapStr = openBitmapStr;
+exports.findBitmapStr = findBitmapStr;
+exports.saveBitmapStr = saveBitmapStr;
 //
 exports.addEvent = addEvent;
-exports.addEvents = addEvents;
 exports.stopEvent = stopEvent;
+exports.addEvents = addEvents;
 exports.end = end;
+exports.addMouse = addMouse;
+exports.addMousePos = addMousePos;
 //
 exports.showAlert = showAlert;
+exports.getTitle = getTitle;
+exports.getBounds = getBounds;
+exports.pidExists = pidExists;
 exports.findIds = findIds;
+exports.findName = findName;
+exports.findNames = findNames;
 exports.activePID = activePID;
 exports.activeName = activeName;
+exports.kill = kill;
