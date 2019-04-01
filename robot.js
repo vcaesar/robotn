@@ -241,7 +241,7 @@ function getText(path) {
     return s.err;
 }
 
-function captureScreen(x, y, w, h) {
+function captureScreen(x = -1, y, w, h) {
     var bit = lib.CaptureScreen(x, y, w, h);
 
     return toObj(bit);

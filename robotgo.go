@@ -89,7 +89,12 @@ func GetScaleSize() (int, int) {
 //export CaptureScreen
 func CaptureScreen(x, y, w, h int) (*uint8, int, int,
 	int, uint8, uint8) {
-	bit := robotgo.GoCaptureScreen(x, y, w, h)
+	var bit robotgo.Bitmap
+	if x == -1 {
+		bit = robotgo.GoCaptureScreen()
+	} else {
+		bit = robotgo.GoCaptureScreen(x, y, w, h)
+	}
 
 	return bit.ImgBuf, bit.Width, bit.Height,
 		bit.Bytewidth, bit.BitsPixel, bit.BytesPerPixel
