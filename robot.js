@@ -19,7 +19,12 @@ var GoStr = Struct({
 const bin = path.join(__dirname, './robotgo');
 
 var lib = ffi.Library(bin, {
+    'GetVersion': ['string', []],
+    'Sleep': ['void', ['long']],
+    'MSleep': ['void', ['double']],
+    //
     'GetPixelColor': ['string', ['long', 'long']],
+    'GetMouseColor': ['string', []],
     'GetScreenSize': [GoInt, []],
     'GetScaleSize': [GoInt, []],
     //
@@ -41,14 +46,44 @@ var lib = ffi.Library(bin, {
     'GetText': [GoStr, ['string']],
     'FindPic': [GoInt, ['string']],
     'GetImgSize': [GoInt, ['string']],
+    'CaptureScreen': [bitmap, ["long", "long", "long", "long"]],
+    //
+    'SaveCapture': ['void', ["string", "long", "long", "long", "long"]],
+    'FreeBitmap': ['void', [long, 'long', "long", "long", 'uint8', 'uint8']],
+    'SaveBitmapArgs': ["string", ['string', long,
+        'long', "long", "long", 'uint8', 'uint8'
+    ]],
+    'OpenBitmapArgs': [bitmap, ['string']],
+    'FindBitmapArgs': [GoInt, [long,
+        'long', "long", "long", 'uint8', 'uint8'
+    ]],
+    'ToStrBitmap': ['string', [long,
+        'long', "long", "long", 'uint8', 'uint8'
+    ]],
+    'BitmapFromStr': [bitmap, ["string"]],
+    //
+    'CaptureBitmapStr': ['string', ["long", "long", "long", "long"]],
+    'OpenBitmapStr': ['string', ['string']],
+    'SaveBitmapStr': ["string", ['string', 'string']],
+    'FindBitmapStr': [GoInt, ["string"]],
+    'FindColor': [GoInt, ['string']],
+    'FindColorCS': [GoInt, ["string", "long", "long", "long", "long"]],
     //
     'AddEvent': ['bool', ['string']],
     'StopEvent': ['void', []],
     'AddEvents': ['bool', ['string', 'string']],
     'End': ['void', []],
+    'AddMouse': ['bool', ["string", "long", "long"]],
+    'AddMousePos': ['bool', ["long", "long"]],
     //
     'ShowAlert': ['int', ['string', 'string']],
+    'GetTitle': ['string', ["long"]],
+    'GetBounds': [GoBoud, ['long']],
+    'PidExists': [GoBool, ['long']],
     'FindIds': [GoStr, ['string']],
+    'FindName': [GoStr, ['long']],
+    'FindNames': [GoStr, []],
+    'Kill': ['string', ['long']],
     'ActivePID': ['string', ['long']],
     'ActiveName': ['string', ['string']],
 });
@@ -103,14 +138,13 @@ function moveSmooth(x, y) {
 
 function getMousePos() {
     var s = lib.GetMousePos();
-
     return {
         x: s.x,
         y: s.y
     };
 }
 
-function click(btn, double = false) {
+function click(btn = "left", double = false) {
     lib.Click(btn, double);
 }
 
