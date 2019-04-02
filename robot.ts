@@ -77,4 +77,17 @@ declare module "robot" {
   export function end(): void;
   export function addMouse(btn: string, x?: number, y?: number): boolean;
   export function addMousePos(x?: number, y?: number): boolean;
+  //
+  export function showAlert(title: string, msg: string): number;
+  export function getTitle(pid?: number): string;
+  export function getBounds(
+    pid: number
+  ): { x: number; y: number; w: number; h: number };
+  export function pidExists(pid: number): boolean;
+  export function findIds(name: string): any;
+  export function findName(pid: number): string;
+  export function findNames(): any;
+  export function activePID(pid: number): string;
+  export function activeName(name: string): string;
+  export function kill(pid: number): string;
 }

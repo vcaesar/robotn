@@ -466,8 +466,8 @@ function getTitle(pid = -1) {
     return s;
 }
 
-function getBounds(name) {
-    var s = lib.GetBounds(name);
+function getBounds(pid) {
+    var s = lib.GetBounds(pid);
     return {
         x: s.x,
         y: s.y,
@@ -497,7 +497,7 @@ function findIds(name) {
 function findName(pid) {
     var s = lib.FindName(pid);
     if (s.err === "") {
-        return s.arr.split(" ");
+        return s.arr;
     }
 
     return s.err;
