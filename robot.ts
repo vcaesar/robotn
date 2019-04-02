@@ -66,8 +66,14 @@ declare module "robot" {
     tol?: boolean
   ): { x: number; y: number };
 
-  export function findColor(color: string): { x: number; y: number };
-  export function findcolorCS(color: string): { x: number; y: number };
+  export function findColor(color: number): { x: number; y: number };
+  export function findcolorCS(
+    color: number,
+    x: number,
+    y: number,
+    w: number,
+    h: number
+  ): { x: number; y: number };
   export function findPic(path: string): { x: number; y: number };
   export function getImgSize(path: string): { w: number; h: number };
   //
