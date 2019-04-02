@@ -23,13 +23,6 @@ declare module "robot" {
     h?: number
   ): void;
   //
-  export function keyTap(key: string, ...mod: string[]): string;
-  export function keyToggle(key: string, ...mod: string[]): string;
-  export function typeStr(str: string, args?: number): void;
-  export function readAll(): string;
-  export function writeAll(str: string): void;
-  export function pasteStr(str: string): void;
-  //
   export function moveMouse(x: number, y: number): void;
   export function moveSmooth(x: number, y: number): void;
   export function click(button?: string, double?: boolean): void;
@@ -37,6 +30,13 @@ declare module "robot" {
   export function dragMouse(x: number, y: number): void;
   export function scroll(x: number, y: number): void;
   export function getMousePos(): { x: number; y: number };
+  //
+  export function keyTap(key: string, ...mod: string[]): string;
+  export function keyToggle(key: string, ...mod: string[]): string;
+  export function typeStr(str: string, args?: number): void;
+  export function readAll(): string;
+  export function writeAll(str: string): void;
+  export function pasteStr(str: string): void;
   //
   export function getText(path: string): string;
   export function captureScreen(
@@ -70,4 +70,11 @@ declare module "robot" {
   export function findcolorCS(color: string): { x: number; y: number };
   export function findPic(path: string): { x: number; y: number };
   export function getImgSize(path: string): { w: number; h: number };
+  //
+  export function addEvent(key: string): boolean;
+  export function stopEvent(): void;
+  export function addEvents(key: string, ...args: string[]): boolean;
+  export function end(): void;
+  export function addMouse(btn: string, x?: number, y?: number): boolean;
+  export function addMousePos(x?: number, y?: number): boolean;
 }
