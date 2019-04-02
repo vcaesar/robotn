@@ -205,7 +205,11 @@ func TypeStr(c *C.char, args float64) {
 //export ReadAll
 func ReadAll() (*C.char, *C.char) {
 	s, err := robotgo.ReadAll()
-	return ch(s), ech(err)
+	if err != nil {
+		return ch(s), ech(err)
+	}
+
+	return ch(s), ch("")
 }
 
 //export WriteAll
@@ -243,7 +247,11 @@ func toBitmap(imgBuf *uint8, width, height, bytewidth int,
 //export GetText
 func GetText(path *C.char) (*C.char, *C.char) {
 	s, err := robotgo.GetText(str(path))
-	return ch(s), ech(err)
+	if err != nil {
+		return ch(s), ech(err)
+	}
+
+	return ch(s), ch("")
 }
 
 //export OpenBitmapArgs

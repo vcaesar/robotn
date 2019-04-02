@@ -100,7 +100,7 @@ var lib = ffi.Library(bin, {
     'SaveBitmapStr': ["string", ['string', 'string']],
     'FindBitmapStr': [GoInt, ["string"]],
     'FindColor': [GoInt, ['uint32']],
-    'FindColorCS': [GoInt, ["uin32", "long", "long", "long", "long"]],
+    'FindColorCS': [GoInt, ["uint32", "long", "long", "long", "long"]],
     //
     'AddEvent': ['bool', ['string']],
     'StopEvent': ['void', []],
