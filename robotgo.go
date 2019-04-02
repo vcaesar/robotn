@@ -8,6 +8,24 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+/*
+
+Package robotgo Go native cross-platform system automation.
+
+Please make sure Golang, GCC is installed correctly before installing RobotGo;
+
+See Requirements:
+	https://github.com/go-vgo/robotgo#requirements
+
+Installation:
+	go get -u github.com/go-vgo/robotgo
+
+C-shared:
+	go get -v github.com/vcaesar/gocs
+
+	gocs -n robotgo
+*/
+
 package main
 
 import "C"
@@ -106,7 +124,7 @@ func SaveCapture(path *C.char, x, y, w, h int) {
 		robotgo.SaveCapture(str(path))
 		return
 	}
-	
+
 	robotgo.SaveCapture(str(path), x, y, w, h)
 }
 
