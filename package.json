@@ -5,7 +5,8 @@
     "main": "robot.js",
     "typings": "robot.ts",
     "scripts": {
-        "build": "go get -v github.com/vcaesar/gocs && gocs -n robotgo"
+        "build": "go get -v github.com/vcaesar/gocs && gocs -n robotgo",
+        "install": "npm run build"
     },
     "repository": {
         "type": "git",
