@@ -8,9 +8,9 @@
 [![GitHub release](https://img.shields.io/github/release/go-vgo/robotgo.svg)](https://github.com/go-vgo/robotgo/releases/latest)
 [![Join the chat at https://gitter.im/go-vgo/robotgo](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/go-vgo/robotgo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
   
-  >Golang 跨平台自动化系统，控制键盘鼠标位图和读取屏幕，窗口句柄以及全局事件监听
+  >Golang 跨平台自动化系统, binding 其他编程语言; 控制键盘鼠标位图和读取屏幕，窗口句柄以及全局事件监听
   
-RobotGo 支持 Mac, Windows, and Linux(X11).
+Robotn 支持 Mac, Windows, and Linux(X11).
 
 提 Issues 请到 [Github](https://github.com/go-vgo/robotgo), 便于统一管理和即时更新
 
@@ -22,7 +22,6 @@ QQ 群: 595877611
 - [Installation](#installation)
 - [Update](#update)
 - [Examples](#examples)
-- [Cross-Compiling](#crosscompiling)
 - [Authors](#authors)
 - [Plans](#plans)
 - [Donate](#donate)
@@ -39,252 +38,123 @@ QQ 群: 595877611
 
 在安装 RobotGo 之前, 请确保 `Golang、GCC` 被正确安装
 
-### ALL:  
+[Robotgo Requirements](https://github.com/go-vgo/robotgo#requirements)
+
+# Install robotn
 ```
-Golang
-
-GCC
+npm install robotn
 ```
-
-#### For Mac OS X:
-```
-Xcode Command Line Tools
-```    
-
-#### For Windows:
-```
-MinGW-w64 (推荐使用) or other GCC
-```
-
-#### For everything else (Linux 等其他系统):
-```
-GCC, libpng
-    
-X11 with the XTest extension (also known as the Xtst library)
-
-事件:
-    
-xcb, xkb, libxkbcommon
-```
-
-##### Ubuntu:
-
-```yml
-sudo apt-get install gcc libc6-dev
-
-sudo apt-get install libx11-dev xorg-dev libxtst-dev libpng++-dev   
-
-sudo apt-get install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev
-sudo apt-get install libxkbcommon-dev
-
-sudo apt-get install xsel xclip
+or
 
 ```
-
-#### Fedora:
-
-```yml
-sudo dnf install libxkbcommon-devel libXtst-devel libxkbcommon-x11-devel xorg-x11-xkb-utils-devel
-
-sudo dnf install libpng-devel
-
-sudo dnf install xsel xclip
+sudo cnpm install robotn
 ```
 
-## Installation:
 ```
-go get github.com/go-vgo/robotgo
+npm --registry=http://r.cnpmjs.org install robotn
 ```
-  It's that easy!
-
-png.h: No such file or directory? Please see [issues/47](https://github.com/go-vgo/robotgo/issues/47).  
-
-## Update:
-```
-go get -u github.com/go-vgo/robotgo   
-```
-
-注意 go1.10.x C 文件编译缓存问题, [golang #24355](https://github.com/golang/go/issues/24355).
-`go mod vendor` problem, [golang #26366](https://github.com/golang/go/issues/26366).
 
 ## [Examples:](https://github.com/go-vgo/robotgo/blob/master/examples)
 
 #### [鼠标](https://github.com/go-vgo/robotgo/blob/master/examples/mouse/main.go)
 
-```Go
-package main
+```js
+var robot = require('robotn');
 
-import (
-	"github.com/go-vgo/robotgo"
-)
-
-func main() {
-  robotgo.ScrollMouse(10, "up")
-  robotgo.MouseClick("left", true)
-  robotgo.MoveMouseSmooth(100, 200, 1.0, 100.0)
-} 
+robot.scroll(10, 10);
+robot.mouseClick("left", true);
+robot.moveSmooth(100, 200, 1.0, 100.0);
 ``` 
 
 #### [键盘](https://github.com/go-vgo/robotgo/blob/master/examples/key/main.go)
 
-```Go
-package main
+```js
+var robot = require('robotn');
 
-import ( 
-  "fmt" 
+robot.typeStr("测试")
+robot.typeStr("山达尔星新星军团, galaxy. こんにちは世界.")
+robot.sleep(1)
 
-  "github.com/go-vgo/robotgo"
-)
+robot.keyTap("enter")
 
-func main() {
-  robotgo.TypeString("Hello World")
-  robotgo.TypeString("测试")
-  robotgo.TypeStr("测试")
-  
-  robotgo.TypeStr("山达尔星新星军团, galaxy. こんにちは世界.")
-  robotgo.Sleep(1)
-  
-  ustr := uint32(robotgo.CharCodeAt("测试", 0))
-  robotgo.UnicodeType(ustr)
-
-  robotgo.KeyTap("enter")
-  robotgo.TypeString("en")
-  robotgo.KeyTap("i", "alt", "command")
-  arr := []string{"alt", "command"}
-  robotgo.KeyTap("i", arr)
-
-  robotgo.WriteAll("测试")
-  text, err := robotgo.ReadAll()
-  if err == nil {
-    fmt.Println(text)
-  }
-} 
+robot.writeAll("Test")
+var text = robot.readAll()
+console.log(text)
 ```
 
 #### [屏幕](https://github.com/go-vgo/robotgo/blob/master/examples/screen/main.go)
 
-```Go
-package main
+```js
+var robot = require('robotn');
 
-import (
-	"fmt"
-
-	"github.com/go-vgo/robotgo"
-)
-
-func main() {
-  x, y := robotgo.GetMousePos()
-  fmt.Println("pos: ", x, y)
-  color := robotgo.GetPixelColor(100, 200)
-  fmt.Println("color----", color)
-} 
+x, y := robot.getMousePos()
+console.log("pos: ", x, y)
+color := robot.getPixelColor(100, 200)
+console.log(("color---- ", color)
 ```
 
 #### [位图](https://github.com/go-vgo/robotgo/blob/master/examples/bitmap/main.go)
 
-```Go
-package main
+```js
+var robot = require('robotn');
 
-import (
-	"fmt"
+var bitmap = robot.captureScreen(10, 20, 30, 40)
+console.log("...", bitmap)
 
-	"github.com/go-vgo/robotgo"
-)
+var pos = robot.findBitmap(bitmap)
+console.log("FindBitmap------ ", pos)
 
-func main() {
-  bitmap := robotgo.CaptureScreen(10, 20, 30, 40)
-  // use `defer robotgo.FreeBitmap(bit)` to free the bitmap
-  defer robotgo.FreeBitmap(bitmap)
-  fmt.Println("...", bitmap)
-
-  fx, fy := robotgo.FindBitmap(bitmap)
-  fmt.Println("FindBitmap------", fx, fy)
-
-  robotgo.SaveBitmap(bitmap, "test.png")
-} 
+robot.saveBitmap(bitmap, "test.png")
+// use `robot.freeBitmap(bit)` to free the bitmap
+robot.freeBitmap(bitmap)
 ```
 
 #### [事件](https://github.com/go-vgo/robotgo/blob/master/examples/event/main.go)
 
-```Go
-package main
+```js
+var robot = require('robotn');
 
-import (
-	"fmt"
+var keve = robot.addEvent("k");
+if (keve) {
+  console.log(("you press... ", "k");
+}
 
-	"github.com/go-vgo/robotgo"
-)
-
-func main() {
-  keve := robotgo.AddEvent("k")
-  if keve == 0 {
-    fmt.Println("you press... ", "k")
-  }
-
-  mleft := robotgo.AddEvent("mleft")
-  if mleft == 0 {
-    fmt.Println("you press... ", "mouse left button")
-  }
-} 
+var s = robot.addEvents("q", "ctrl");
+if (s) {
+  console.log(("you press... ", "mouse left button");
+}
 ```
 #### [窗口句柄](https://github.com/go-vgo/robotgo/blob/master/examples/window/main.go)
 
-```Go
-package main
+```js
+var robot = require('robotn');
 
-import (
-	"fmt"
+var fpid = robot.findIds("Google")
+console.log("pids... ", fpid)
 
-	"github.com/go-vgo/robotgo"
-)
+if (fpid.length > 0) {
+  robot.activePID(fpid[0])
 
-func main() {
-  fpid, err := robotgo.FindIds("Google")
-  if err == nil {
-    fmt.Println("pids...", fpid)
+  robot.kill(fpid[0])
+}
 
-    if len(fpid) > 0 {
-      robotgo.ActivePID(fpid[0])
+robot.activeName("chrome")
 
-      robotgo.Kill(fpid[0])
-    }
+var isExist = robot.pidExists(100)
+if (isExist) {
+  console.log("pid exists is", isExist)
+
+  robot.Kill(100)
+}
+
+var abool = robot.showAlert("test", "robotgo")
+if (abool == 0) {
+ 	  console.log("ok@@@ ", "ok")
   }
 
-  robotgo.ActiveName("chrome")
-
-  isExist, err := robotgo.PidExists(100)
-  if err == nil && isExist {
-    fmt.Println("pid exists is", isExist)
-
-    robotgo.Kill(100)
-  }
-
-  abool := robotgo.ShowAlert("test", "robotgo")
-  if abool == 0 {
-    fmt.Println("ok@@@ ", "ok")
-  }
-
-  title := robotgo.GetTitle()
-  fmt.Println("title@@@ ", title)
-} 
-```
-
-## CrossCompiling
-
-##### Windows64 to win32
-```Go
-SET CGO_ENABLED=1
-SET GOARCH=386
-go build main.go
-```
-
-#### Other to windows
-```Go
-GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ go build -x ./
-```
-```
-// CC=mingw-w64\x86_64-7.2.0-win32-seh-rt_v5-rev1\mingw64\bin\gcc.exe 
-// CXX=mingw-w64\x86_64-7.2.0-win32-seh-rt_v5-rev1\mingw64\bin\g++.exe
+var title = robot.getTitle()
+  console.log("title@@@ ", title)
+}
 ```
 
 ## Authors
