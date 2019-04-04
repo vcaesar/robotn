@@ -18,7 +18,7 @@
 
 Robotn supports Mac, Windows, and Linux(X11).
 
-[简体中文](https://github.com/go-vgo/robotgo/blob/master/README_zh.md)
+[简体中文](https://github.com/vcaesar/robotn/blob/master/README_zh.md)
 
 ## Contents
 - [Docs](#docs)
