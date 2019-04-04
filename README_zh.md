@@ -116,12 +116,12 @@ var robot = require('robotn');
 
 var keve = robot.addEvent("k");
 if (keve) {
-  console.log(("you press... ", "k");
+  console.log("you press... ", "k");
 }
 
 var s = robot.addEvents("q", "ctrl");
 if (s) {
-  console.log(("you press... ", "mouse left button");
+  console.log("you press... ", "mouse left button");
 }
 ```
 #### [窗口句柄](https://github.com/go-vgo/robotgo/blob/master/examples/window/main.go)
