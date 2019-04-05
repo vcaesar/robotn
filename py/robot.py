@@ -26,11 +26,21 @@ ffi.cdef("""
 	char* GetPixelColor(GoInt x, GoInt y);
 	char* GetMouseColor();
 
+	bool AddEvent(char* p0);
+	void StopEvent();
+	bool AddEvents(char* p0, char* p1);
+	void End();
+	bool AddMouse(char* p0, GoInt p1, GoInt p2);
+	bool AddMousePos(GoInt p0, GoInt p1);
+
 	char* ActivePID(GoInt pid);
 	char* ActiveName(char* name);
 """)
 
 lib = ffi.dlopen("../robotgo")
+
+def ch(s):
+	return s.encode('utf-8')
 
 def getVersion():
 	ver = lib.GetVersion()
@@ -42,6 +52,8 @@ def sleep(tm):
 def MSleep(tm):
 	lib.MSleep(tm)
 
+# 
+
 def getPixelColor(x, y):
 	color = lib.GetPixelColor(x, y)
 	return ffi.string(color)
@@ -50,6 +62,20 @@ def getMouseColor():
 	color = lib.GetMouseColor()
 	return ffi.string(color)
 
+# 
+
+def addEvent(key):
+	return lib.AddEvent(ch(key))
+
+def end():
+	lib.End()
+
+# 
+
 def activePID(pid):
 	err = lib.ActivePID(pid)
+	return ffi.string(err)
+
+def activeName(name):
+	err = lib.ActiveName(ch(name))
 	return ffi.string(err)
