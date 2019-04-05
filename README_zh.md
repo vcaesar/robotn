@@ -144,17 +144,16 @@ var isExist = robot.pidExists(100)
 if (isExist) {
   console.log("pid exists is", isExist)
 
-  robot.Kill(100)
+  robot.kill(100)
 }
 
 var abool = robot.showAlert("test", "robotgo")
 if (abool == 0) {
- 	  console.log("ok@@@ ", "ok")
-  }
+  console.log("ok@@@ ", "ok")
+}
 
 var title = robot.getTitle()
-  console.log("title@@@ ", title)
-}
+console.log("title@@@ ", title)
 ```
 
 ## Authors
