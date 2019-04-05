@@ -81,10 +81,10 @@ console.log(text)
 ```js
 var robot = require('robotn');
 
-x, y := robot.getMousePos()
-console.log("pos: ", x, y)
-color := robot.getPixelColor(100, 200)
-console.log(("color---- ", color)
+var pos = robot.getMousePos()
+console.log("pos: ", pos)
+var color = robot.getPixelColor(100, 200)
+console.log("color---- ", color)
 ```
 
 #### [Bitmap](https://github.com/go-vgo/robotgo/blob/master/examples/bitmap/main.go)
