@@ -19,7 +19,30 @@ if is_64b: ffi.cdef("typedef long GoInt;\n")
 else:      ffi.cdef("typedef int GoInt;\n")
 
 ffi.cdef("""
+	char* GetVersion();
+	void Sleep(GoInt tm);
+	void MSleep(double tm);
+
 	char* GetPixelColor(GoInt x, GoInt y);
+	char* GetMouseColor();
 """)
 
 lib = ffi.dlopen("../robotgo")
+
+def getVersion():
+	ver = lib.GetVersion()
+	return ffi.string(ver)
+
+def sleep():
+	lib.Sleep()
+
+def MSleep():
+	lib.MSleep
+
+def getPixelColor(x, y):
+	color = lib.GetPixelColor(x, y)
+	return ffi.string(color)
+
+def getMouseColor():
+	color = lib.GetMouseColor()
+	return ffi.string(color)
