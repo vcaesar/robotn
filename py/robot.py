@@ -21,12 +21,32 @@ else:
     ffi.cdef("typedef int GoInt;\n")
 
 ffi.cdef("""
+    typedef struct {
+		GoInt x;
+		GoInt y;
+	} GoRInt;
+
+	typedef struct {
+		char* arr;
+		char* err;
+	} GoStr;
+
 	char* GetVersion();
 	void Sleep(GoInt tm);
 	void MSleep(double tm);
 
 	char* GetPixelColor(GoInt x, GoInt y);
 	char* GetMouseColor();
+    GoRInt GetScreenSize();
+	GoRInt GetScaleSize();
+
+    void MoveMose(GoInt x, GoInt y);
+	void DargMose(GoInt x, GoInt y, char* btn);
+	void MoveSmooth(GoInt x, GoInt y);
+	GoRInt GetMousePos();
+	void Click(char* btn, bool double_c);
+	void MoseToggle(char* key, char* btn);
+	void Scroll(GoInt x, GoInt y);
 
 	bool AddEvent(char* p0);
 	void StopEvent();
