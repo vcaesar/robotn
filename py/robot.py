@@ -105,6 +105,16 @@ def getMouseColor():
     color = lib.GetMouseColor()
     return ffi.string(color)
 
+
+def getScreenSize():
+    s = lib.GetScreenSize()
+    return s.x, s.y
+
+
+def getScaleSize():
+    s = lib.GetScaleSize()
+    return s.x, s.y
+
 # /*
 # .___  ___.   ______    __    __       _______. _______
 # |   \/   |  /  __  \  |  |  |  |     /       ||   ____|
@@ -114,6 +124,30 @@ def getMouseColor():
 # |__|  |__|  \______/   \______/  |_______/    |_______|
 
 # */
+
+
+def moveMose(x, y):
+    lib.MoveMose(x, y)
+
+
+def dargMose(x, y, btn="left"):
+    lib.dargMose(x, y, ch(btn))
+
+
+def moveSmooth(x, y):
+    lib.MoveSmooth(x, y)
+
+
+def click(btn="left", double_c=False):
+    lib.Click(ch(btn), double_c)
+
+
+def moseToggle(key, btn):
+    lib.moseToggle(ch(key), ch(btn))
+
+
+def scroll(x, y):
+    lib.Scroll(x, y)
 
 # /*
 #  __  ___  ___________    ____ .______     ______        ___      .______       _______
