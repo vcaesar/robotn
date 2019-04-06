@@ -10,6 +10,7 @@
 
 from __future__ import print_function
 import sys
+import os
 from cffi import FFI
 
 is_64b = sys.maxsize > 2**32
@@ -67,7 +68,9 @@ ffi.cdef("""
 	char* ActiveName(char* name);
 """)
 
-lib = ffi.dlopen("../robotgo")
+dir = os.path.dirname(__file__)
+bin = os.path.join(dir, "../robotgo")
+lib = ffi.dlopen(bin)
 
 
 def ch(s):
