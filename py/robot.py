@@ -15,8 +15,10 @@ from cffi import FFI
 is_64b = sys.maxsize > 2**32
 
 ffi = FFI()
-if is_64b: ffi.cdef("typedef long GoInt;\n")
-else:      ffi.cdef("typedef int GoInt;\n")
+if is_64b:
+    ffi.cdef("typedef long GoInt;\n")
+else:
+    ffi.cdef("typedef int GoInt;\n")
 
 ffi.cdef("""
 	char* GetVersion();
@@ -39,43 +41,125 @@ ffi.cdef("""
 
 lib = ffi.dlopen("../robotgo")
 
+
 def ch(s):
-	return s.encode('utf-8')
+    return s.encode('utf-8')
+
 
 def getVersion():
-	ver = lib.GetVersion()
-	return ffi.string(ver)
+    ver = lib.GetVersion()
+    return ffi.string(ver)
+
 
 def sleep(tm):
-	lib.Sleep(tm)
+    lib.Sleep(tm)
+
 
 def MSleep(tm):
-	lib.MSleep(tm)
+    lib.MSleep(tm)
 
-# 
+# /*
+#       _______.  ______ .______       _______  _______ .__   __.
+#     /       | /      ||   _  \     |   ____||   ____||  \ |  |
+#    |   (----`|  ,----'|  |_)  |    |  |__   |  |__   |   \|  |
+#     \   \    |  |     |      /     |   __|  |   __|  |  . `  |
+# .----)   |   |  `----.|  |\  \----.|  |____ |  |____ |  |\   |
+# |_______/     \______|| _| `._____||_______||_______||__| \__|
+# */
+
 
 def getPixelColor(x, y):
-	color = lib.GetPixelColor(x, y)
-	return ffi.string(color)
+    color = lib.GetPixelColor(x, y)
+    return ffi.string(color)
+
 
 def getMouseColor():
-	color = lib.GetMouseColor()
-	return ffi.string(color)
+    color = lib.GetMouseColor()
+    return ffi.string(color)
 
-# 
+# /*
+# .___  ___.   ______    __    __       _______. _______
+# |   \/   |  /  __  \  |  |  |  |     /       ||   ____|
+# |  \  /  | |  |  |  | |  |  |  |    |   (----`|  |__
+# |  |\/|  | |  |  |  | |  |  |  |     \   \    |   __|
+# |  |  |  | |  `--'  | |  `--'  | .----)   |   |  |____
+# |__|  |__|  \______/   \______/  |_______/    |_______|
+
+# */
+
+# /*
+#  __  ___  ___________    ____ .______     ______        ___      .______       _______
+# |  |/  / |   ____\   \  /   / |   _  \   /  __  \      /   \     |   _  \     |       \
+# |  '  /  |  |__   \   \/   /  |  |_)  | |  |  |  |    /  ^  \    |  |_)  |    |  .--.  |
+# |    <   |   __|   \_    _/   |   _  <  |  |  |  |   /  /_\  \   |      /     |  |  |  |
+# |  .  \  |  |____    |  |     |  |_)  | |  `--'  |  /  _____  \  |  |\  \----.|  '--'  |
+# |__|\__\ |_______|   |__|     |______/   \______/  /__/     \__\ | _| `._____||_______/
+
+# */
+
+
+def arr_add(args):
+    arr = ""
+    for i in range(len(args)):
+        if i < len(args)-1:
+            arr += args[i] + ","
+        else:
+            arr += args[i]
+
+    return arr
+
+
+# /*
+# .______    __  .___________..___  ___.      ___      .______
+# |   _  \  |  | |           ||   \/   |     /   \     |   _  \
+# |  |_)  | |  | `---|  |----`|  \  /  |    /  ^  \    |  |_)  |
+# |   _  <  |  |     |  |     |  |\/|  |   /  /_\  \   |   ___/
+# |  |_)  | |  |     |  |     |  |  |  |  /  _____  \  |  |
+# |______/  |__|     |__|     |__|  |__| /__/     \__\ | _|
+# */
+
+
+# /*
+#  ___________    ____  _______ .__   __. .___________.
+# |   ____\   \  /   / |   ____||  \ |  | |           |
+# |  |__   \   \/   /  |  |__   |   \|  | `---|  |----`
+# |   __|   \      /   |   __|  |  . `  |     |  |
+# |  |____   \    /    |  |____ |  |\   |     |  |
+# |_______|   \__/     |_______||__| \__|     |__|
+# */
 
 def addEvent(key):
-	return lib.AddEvent(ch(key))
+    return lib.AddEvent(ch(key))
+
 
 def end():
-	lib.End()
+    lib.End()
 
-# 
+
+def addEvents(key, *vals):
+    arr = arr_add(vals)
+    return lib.AddEvents(ch(key), ch(arr))
+
+
+def end():
+    lib.End()
+
+# /*
+# ____    __    ____  __  .__   __.  _______   ______   ____    __    ____
+# \   \  /  \  /   / |  | |  \ |  | |       \ /  __  \  \   \  /  \  /   /
+#  \   \/    \/   /  |  | |   \|  | |  .--.  |  |  |  |  \   \/    \/   /
+#   \            /   |  | |  . `  | |  |  |  |  |  |  |   \            /
+#    \    /\    /    |  | |  |\   | |  '--'  |  `--'  |    \    /\    /
+#     \__/  \__/     |__| |__| \__| |_______/ \______/      \__/  \__/
+
+# */
+
 
 def activePID(pid):
-	err = lib.ActivePID(pid)
-	return ffi.string(err)
+    err = lib.ActivePID(pid)
+    return ffi.string(err)
+
 
 def activeName(name):
-	err = lib.ActiveName(ch(name))
-	return ffi.string(err)
+    err = lib.ActiveName(ch(name))
+    return ffi.string(err)
