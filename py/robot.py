@@ -48,6 +48,13 @@ ffi.cdef("""
 	void MoseToggle(char* key, char* btn);
 	void Scroll(GoInt x, GoInt y);
 
+    char* KeyTap(char* key, char* vals);
+    char* KeyToggle(char* key, char* vals);
+    void TypeStr(char* str, double args);
+	GoStr ReadAll();
+    void WriteAll(char* str);
+	void PasteStr(char* str);
+
 	bool AddEvent(char* p0);
 	void StopEvent();
 	bool AddEvents(char* p0, char* p1);
@@ -55,6 +62,7 @@ ffi.cdef("""
 	bool AddMouse(char* p0, GoInt p1, GoInt p2);
 	bool AddMousePos(GoInt p0, GoInt p1);
 
+    GoStr FindIds(char* name);
 	char* ActivePID(GoInt pid);
 	char* ActiveName(char* name);
 """)
