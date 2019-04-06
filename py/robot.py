@@ -171,6 +171,27 @@ def arr_add(args):
     return arr
 
 
+def keyTap(key, *vals):
+    arr = arr_add(vals)
+    lib.keyTap(ch(key), ch(arr))
+
+
+def KeyToggle(key, *vals):
+    arr = arr_add(vals)
+    lib.KeyToggle(ch(key), ch(arr))
+
+
+def typeStr(s, args=3.0):
+    lib.TypeStr(ch(s), args)
+
+
+def writeAll(s):
+    lib.WriteAll(ch(s))
+
+
+def pasteStr(s):
+    lib.pasteStr(ch(s))
+
 # /*
 # .______    __  .___________..___  ___.      ___      .______
 # |   _  \  |  | |           ||   \/   |     /   \     |   _  \
