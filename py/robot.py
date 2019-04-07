@@ -77,9 +77,13 @@ def ch(s):
     return s.encode('utf-8')
 
 
+def f_str(cs):
+    return ffi.string(cs)
+
+
 def getVersion():
     ver = lib.GetVersion()
-    return ffi.string(ver)
+    return f_str(ver)
 
 
 def sleep(tm):
@@ -101,12 +105,12 @@ def MSleep(tm):
 
 def getPixelColor(x, y):
     color = lib.GetPixelColor(x, y)
-    return ffi.string(color)
+    return f_str(color)
 
 
 def getMouseColor():
     color = lib.GetMouseColor()
-    return ffi.string(color)
+    return f_str(color)
 
 
 def getScreenSize():
@@ -176,12 +180,14 @@ def arr_add(args):
 
 def keyTap(key, *vals):
     arr = arr_add(vals)
-    lib.keyTap(ch(key), ch(arr))
+    s = lib.KeyTap(ch(key), ch(arr))
+    return f_str(s)
 
 
 def KeyToggle(key, *vals):
     arr = arr_add(vals)
-    lib.KeyToggle(ch(key), ch(arr))
+    s = lib.KeyToggle(ch(key), ch(arr))
+    return f_str(s)
 
 
 def typeStr(s, args=3.0):
@@ -243,9 +249,9 @@ def end():
 
 def activePID(pid):
     err = lib.ActivePID(pid)
-    return ffi.string(err)
+    return f_str(err)
 
 
 def activeName(name):
     err = lib.ActiveName(ch(name))
-    return ffi.string(err)
+    return f_str(err)
