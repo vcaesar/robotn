@@ -65,6 +65,8 @@ ffi.cdef("""
 
     char* GetTitle(GoInt pid);
     GoStr FindIds(char* name);
+    GoStr FindName(GoInt pid);
+	GoStr FindNames();
 	char* ActivePID(GoInt pid);
 	char* ActiveName(char* name);
     char* Kill(GoInt pid);
@@ -254,8 +256,28 @@ def arr(s):
     return st.split(' ')
 
 
+def getTitle(pid=-1):
+    s = lib.GetTitle(pid)
+    return f_str(s)
+
+
 def findIds(name):
     s = lib.FindIds(ch(name))
+
+    err = str(f_str(s.err))
+    if err == "b''":
+        return arr(s.arr)
+
+    return err
+
+
+def findName(pid):
+    s = lib.FindName(pid)
+    return f_str(s)
+
+
+def findNames():
+    s = lib.FindNames()
 
     err = str(f_str(s.err))
     if err == "b''":
