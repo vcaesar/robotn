@@ -63,9 +63,11 @@ ffi.cdef("""
 	bool AddMouse(char* p0, GoInt p1, GoInt p2);
 	bool AddMousePos(GoInt p0, GoInt p1);
 
+    char* GetTitle(GoInt pid);
     GoStr FindIds(char* name);
 	char* ActivePID(GoInt pid);
 	char* ActiveName(char* name);
+    char* Kill(GoInt pid);
 """)
 
 dir = os.path.dirname(__file__)
@@ -247,6 +249,21 @@ def end():
 # */
 
 
+def arr(s):
+    st = bytes.decode(f_str(s))
+    return st.split(' ')
+
+
+def findIds(name):
+    s = lib.FindIds(ch(name))
+
+    err = str(f_str(s.err))
+    if err == "b''":
+        return arr(s.arr)
+
+    return err
+
+
 def activePID(pid):
     err = lib.ActivePID(pid)
     return f_str(err)
@@ -255,3 +272,7 @@ def activePID(pid):
 def activeName(name):
     err = lib.ActiveName(ch(name))
     return f_str(err)
+
+
+def kill(pid):
+    lib.Kill(pid)
