@@ -16,7 +16,7 @@
 
   >Golang Desktop Automation, binding other language. Control the mouse, keyboard, bitmap, read the screen,   Window Handle and global event listener.
 
-Robotn supports Mac, Windows, and Linux(X11).
+Robotn supports Mac, Windows, and Linux(X11). Robot supports go, javascript, python and other.
 
 [简体中文](https://github.com/vcaesar/robotn/blob/master/README_zh.md)
 
@@ -43,6 +43,8 @@ Now, Please make sure `Golang, GCC` is installed correctly before installing rob
 
 [Robotgo Requirements](https://github.com/go-vgo/robotgo#requirements)
 
+You can [Build from source code](#Build-from-source-code).
+
 # Install robotn
 ```
 npm install robotn
@@ -58,6 +60,16 @@ var robot = require('robotn');
 robot.scroll(10, 10);
 robot.mouseClick("left", true);
 robot.moveSmooth(100, 200, 1.0, 100.0);
+```
+
+#### python
+
+```py
+import robot
+
+robot.scroll(10, 10)
+robot.mouseClick("left", true)
+robot.moveSmooth(100, 200, 1.0, 100.0)
 ```
 
 #### [Keyboard](https://github.com/go-vgo/robotgo/blob/master/examples/key/main.go)
@@ -144,13 +156,41 @@ if (isExist) {
 
 var abool = robot.showAlert("test", "robotgo")
 if (abool == 0) {
- 	console.log("ok@@@ ", "ok")
+  console.log("ok@@@ ", "ok")
 }
 
 var title = robot.getTitle()
 console.log("title@@@ ", title)
 ```
 
+## Build from source code:
+
+### Install robotgo
+```
+go get -u github.com/go-vgo/robotgo
+```
+
+### [Build-tools](github.com/vcaesar/gocs)
+```
+go get -v github.com/vcaesar/gocs
+```
+
+### Building
+
+```
+gocs -n robotgo
+```
+
+#### node:
+##### Install npm modules
+```
+npm install
+```
+
+#### python
+```
+pip install cffi
+```
 
 ## Authors
 * [The author is vz](https://github.com/vcaesar)
