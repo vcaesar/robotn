@@ -43,7 +43,7 @@ Now, Please make sure `Golang, GCC` is installed correctly before installing rob
 
 [Robotgo Requirements](https://github.com/go-vgo/robotgo#requirements)
 
-You can [Build from source code](#Build-from-source-code).
+You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be ed in the future.
 
 # Install robotn
 ```
