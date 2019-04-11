@@ -40,7 +40,7 @@ QQ 群: 595877611
 
 [Robotgo Requirements](https://github.com/go-vgo/robotgo#requirements)
 
-You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be ed in the future.
+You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be added in the future.
 
 # Install robotn
 ```
