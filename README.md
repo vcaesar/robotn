@@ -184,7 +184,7 @@ gocs -n robotgo
 #### node:
 ##### Install npm modules
 ```
-npm install
+npm install robotn
 ```
 
 #### python
