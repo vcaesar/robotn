@@ -36,11 +36,9 @@ QQ 群: 595877611
 ## Requirements:
 环境要求:
 
-在安装 RobotGo 之前, 请确保 `Golang、GCC` 被正确安装
+Now, 这里没有 prebuild binary 版本, 在安装 RobotGo 之前, 请确保 `Golang、GCC` 被正确安装
 
 [Robotgo Requirements](https://github.com/go-vgo/robotgo#requirements)
-
-You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be added in the future.
 
 # Install robotn
 ```
@@ -55,6 +53,8 @@ sudo cnpm install robotn
 ```
 npm --registry=http://r.cnpmjs.org install robotn
 ```
+
+You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be added in the future.
 
 ## [Examples:](https://github.com/go-vgo/robotgo/blob/master/examples)
 
@@ -175,12 +175,20 @@ console.log("title@@@ ", title)
 go get -u github.com/go-vgo/robotgo
 ```
 
+```
+git clone https://github.com/vcaesar/robotn
+```
+
 ### [Build-tools](github.com/vcaesar/gocs)
 ```
 go get -v github.com/vcaesar/gocs
 ```
 
 ### Building
+
+```
+cd robotn
+```
 
 ```
 gocs -n robotgo

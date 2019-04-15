@@ -39,16 +39,16 @@ Robotn supports Mac, Windows, and Linux(X11). Robot supports go, javascript, pyt
 
 ## Requirements:
 
-Now, Please make sure `Golang, GCC` is installed correctly before installing robotgo.
+Now, there is no prebuild binary version available, Please make sure `Golang, GCC` is installed correctly before installing robotgo.
 
 [Robotgo Requirements](https://github.com/go-vgo/robotgo#requirements)
-
-You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be added in the future.
 
 # Install robotn
 ```
 npm install robotn
 ```
+
+You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be added in the future.
 
 ## [Examples:](https://github.com/go-vgo/robotgo/blob/master/examples)
 
@@ -170,12 +170,20 @@ console.log("title@@@ ", title)
 go get -u github.com/go-vgo/robotgo
 ```
 
+```
+git clone https://github.com/vcaesar/robotn
+```
+
 ### [Build-tools](github.com/vcaesar/gocs)
 ```
 go get -v github.com/vcaesar/gocs
 ```
 
 ### Building
+
+```
+cd robotn
+```
 
 ```
 gocs -n robotgo
