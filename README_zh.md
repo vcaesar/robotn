@@ -54,7 +54,7 @@ sudo cnpm install robotn
 npm --registry=http://r.cnpmjs.org install robotn
 ```
 
-You can [Build from source code](#Build-from-source-code). The prebuilt binaries will be added in the future.
+Also, you can [Build from source code](#Build-from-source-code). The python's `pip install`, and the prebuilt binaries will be added in the future.
 
 ## [Examples:](https://github.com/go-vgo/robotgo/blob/master/examples)
 
@@ -179,7 +179,7 @@ go get -u github.com/go-vgo/robotgo
 git clone https://github.com/vcaesar/robotn
 ```
 
-### [Build-tools](github.com/vcaesar/gocs)
+### [Build-tools](https://github.com/vcaesar/gocs)
 ```
 go get -v github.com/vcaesar/gocs
 ```
