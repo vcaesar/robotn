@@ -24,7 +24,7 @@ declare module "robot" {
   ): void;
   //
   export function moveMouse(x: number, y: number): void;
-  export function moveSmooth(x: number, y: number): void;
+  export function moveSmooth(x: number, y: number, low: number, high: number): void;
   export function click(button?: string, double?: boolean): void;
   export function mouseToggle(down?: string, button?: boolean): void;
   export function dragMouse(x: number, y: number): void;
