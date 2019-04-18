@@ -149,8 +149,8 @@ func DragMouse(x, y int, args *C.char) {
 }
 
 //export MoveSmooth
-func MoveSmooth(x, y int) bool {
-	return robotgo.MoveSmooth(x, y)
+func MoveSmooth(x, y int, low, high float64) bool {
+	return robotgo.MoveSmooth(x, y, low, high)
 }
 
 //export GetMousePos

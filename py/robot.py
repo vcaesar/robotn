@@ -43,7 +43,7 @@ ffi.cdef("""
 
     void MoveMose(GoInt x, GoInt y);
 	void DargMose(GoInt x, GoInt y, char* btn);
-	void MoveSmooth(GoInt x, GoInt y);
+	void MoveSmooth(GoInt x, GoInt y, double low, double high);
 	GoRInt GetMousePos();
 	void Click(char* btn, bool double_c);
 	void MoseToggle(char* key, char* btn);
@@ -145,8 +145,8 @@ def dargMose(x, y, btn="left"):
     lib.dargMose(x, y, ch(btn))
 
 
-def moveSmooth(x, y):
-    lib.MoveSmooth(x, y)
+def moveSmooth(x, y, low=1.0, high=3.0):
+    lib.MoveSmooth(x, y, low, high)
 
 
 def click(btn="left", double_c=False):

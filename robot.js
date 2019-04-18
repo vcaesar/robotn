@@ -63,7 +63,7 @@ var lib = ffi.Library(bin, {
     //
     'MoveMouse': ['void', ['long', 'long']],
     'DragMouse': ['void', ['long', 'long', "string"]],
-    'MoveSmooth': ['void', ['long', 'long']],
+    'MoveSmooth': ['void', ['long', 'long', 'double', 'double']],
     'GetMousePos': [GoInt, []],
     'Click': ['void', ['string', 'bool']],
     'MouseToggle': ['void', ['string', 'string']],
@@ -188,8 +188,8 @@ function dragMouse(x, y, btn = "left") {
     lib.DragMouse(x, y, btn);
 }
 
-function moveSmooth(x, y) {
-    lib.moveSmooth(x, y);
+function moveSmooth(x, y, low = 1.0, high = 3.0) {
+    lib.moveSmooth(x, y, low, high);
 }
 
 function getMousePos() {
