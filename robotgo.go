@@ -492,6 +492,17 @@ func FindNames() (*C.char, *C.char) {
 	return ch(sb), ch("")
 }
 
+//export FindPath
+func FindPath(pid int32) (*C.char, *C.char) {
+	sb, err := robotgo.FindPath(pid)
+
+	if err != nil {
+		return ch(sb), ech(err)
+	}
+
+	return ch(sb), ch("")
+}
+
 //export ActivePID
 func ActivePID(pid int32) (c *C.char) {
 	err := robotgo.ActivePID(pid)
