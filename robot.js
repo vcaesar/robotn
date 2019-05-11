@@ -116,6 +116,7 @@ var lib = ffi.Library(bin, {
     'FindIds': [GoStr, ['string']],
     'FindName': [GoStr, ['long']],
     'FindNames': [GoStr, []],
+    'FindPath': [GoStr, ['long']],
     'Kill': ['string', ['long']],
     'ActivePID': ['string', ['long']],
     'ActiveName': ['string', ['string']],
@@ -512,6 +513,15 @@ function findNames() {
     return s.err;
 }
 
+function findPath(pid) {
+    var s = lib.FindPath(pid);
+    if (s.err === "") {
+        return s.arr;
+    }
+
+    return s.err;
+}
+
 function activePID(pid) {
     return lib.ActivePID(pid);
 }
@@ -583,6 +593,7 @@ exports.pidExists = pidExists;
 exports.findIds = findIds;
 exports.findName = findName;
 exports.findNames = findNames;
+exports.findPath = findPath;
 exports.activePID = activePID;
 exports.activeName = activeName;
 exports.kill = kill;
