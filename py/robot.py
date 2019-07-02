@@ -240,6 +240,14 @@ def addEvents(key, *vals):
 def end():
     lib.End()
 
+
+def addMouse(btn, x=-1, y=-1):
+    return lib.AddMouse(ch(btn), x, y)
+
+
+def addMousePos(x, y):
+    return lib.AddMousePos(x, y)
+
 # /*
 # ____    __    ____  __  .__   __.  _______   ______   ____    __    ____
 # \   \  /  \  /   / |  | |  \ |  | |       \ /  __  \  \   \  /  \  /   /
