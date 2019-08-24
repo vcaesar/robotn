@@ -1,6 +1,6 @@
 {
     "name": "robotn",
-    "version": "0.10.0",
+    "version": "0.20.0",
     "description": "Node.js native cross-platform GUI Automation.",
     "main": "robot.js",
     "typings": "robot.ts",
