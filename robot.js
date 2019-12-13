@@ -8,12 +8,14 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-// var ffi = require('ffi-napi');
-var ffi = require('ffi');
+var ffi = require('ffi-napi');
+// var ffi = require('ffi');
 const path = require('path');
 
-var ref = require('ref');
-var Struct = require("ref-struct");
+var ref = require('ref-napi');
+var Struct = require("ref-struct-napi");
+// var ref = require('ref');
+// var Struct = require("ref-struct");
 // var ArrayType = require('ref-array');
 
 var long = ref.types.long;
