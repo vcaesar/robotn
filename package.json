@@ -33,7 +33,7 @@
     },
     "homepage": "https://github.com/vcaesar/robotn",
     "dependencies": {
-        "ffi-napi": "^2.4.6",
+        "ffi-napi": "^2.4.7",
         "ref-napi": "^1.4.3",
         "ref-struct-napi": "^1.1.0"
     },
