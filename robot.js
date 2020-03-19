@@ -56,6 +56,7 @@ const bin = path.join(__dirname, './robotgo');
 var lib = ffi.Library(bin, {
     'GetVersion': ['string', []],
     'Sleep': ['void', ['long']],
+    'MilliSleep': ['void', ['long']],
     'MSleep': ['void', ['double']],
     //
     'GetPixelColor': ['string', ['long', 'long']],
@@ -75,7 +76,7 @@ var lib = ffi.Library(bin, {
     'KeyToggle': ['string', ['string', 'string']],
     'TypeStr': ['void', ['string', 'double']],
     'ReadAll': [GoStr, []],
-    'WriteAll': ['void', ['string']],
+    'WriteAll': ['string', ['string']],
     'PasteStr': ['void', ['string']],
     //
     'GetText': [GoStr, ['string']],
@@ -126,6 +127,10 @@ var lib = ffi.Library(bin, {
 
 function sleep(tm) {
     lib.Sleep(tm);
+}
+
+function milliSleep(tm) {
+    lib.MilliSleep(tm);
 }
 
 function MSleep(tm) {
@@ -262,7 +267,7 @@ function readAll() {
 }
 
 function writeAll(str) {
-    lib.WriteAll(str);
+    return lib.WriteAll(str);
 }
 
 function pasteStr(str) {
@@ -539,6 +544,7 @@ function kill(pid) {
 // module.exports = robotn
 exports.getVersion = getVersion;
 exports.sleep = sleep;
+exports.MilliSleep = milliSleep;
 exports.MSleep = MSleep;
 //
 exports.getPixelColor = getPixelColor;

@@ -68,6 +68,11 @@ func Sleep(tm int) {
 	robotgo.Sleep(tm)
 }
 
+//export MilliSleep
+func MilliSleep(tm int) {
+	robotgo.MilliSleep(tm)
+}
+
 //export MSleep
 func MSleep(tm float64) {
 	robotgo.MicroSleep(tm)
@@ -213,8 +218,13 @@ func ReadAll() (*C.char, *C.char) {
 }
 
 //export WriteAll
-func WriteAll(text *C.char) {
-	robotgo.WriteAll(str(text))
+func WriteAll(text *C.char) *C.char {
+	err := robotgo.WriteAll(str(text))
+	if err != nil {
+		return ech(err)
+	}
+
+	return ch("")
 }
 
 //export PasteStr
