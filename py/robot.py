@@ -53,7 +53,7 @@ ffi.cdef("""
     char* KeyToggle(char* key, char* vals);
     void TypeStr(char* str, double args);
 	GoStr ReadAll();
-    void WriteAll(char* str);
+    char* WriteAll(char* str);
 	void PasteStr(char* str);
 
 	bool AddEvent(char* p0);
@@ -198,8 +198,22 @@ def typeStr(s, args=3.0):
     lib.TypeStr(ch(s), args)
 
 
+def errStr(s):
+    err = str(f_str(s.err))
+    if err == "b''":
+        return arr(s.arr)
+
+    return err
+
+
+def readAll():
+    s = lib.ReadAll()
+
+    return errStr(s)
+
+
 def writeAll(s):
-    lib.WriteAll(ch(s))
+    return lib.WriteAll(ch(s))
 
 
 def pasteStr(s):
@@ -272,11 +286,7 @@ def getTitle(pid=-1):
 def findIds(name):
     s = lib.FindIds(ch(name))
 
-    err = str(f_str(s.err))
-    if err == "b''":
-        return arr(s.arr)
-
-    return err
+    return errStr(s)
 
 
 def findName(pid):
@@ -287,11 +297,7 @@ def findName(pid):
 def findNames():
     s = lib.FindNames()
 
-    err = str(f_str(s.err))
-    if err == "b''":
-        return arr(s.arr)
-
-    return err
+    return errStr(s)
 
 
 def activePID(pid):
