@@ -14,8 +14,6 @@ Robotn 支持 Mac, Windows, and Linux(X11). Robot 支持 go, javascript, python 
 
 提 Issues 请到 [Github](https://github.com/go-vgo/robotgo), 便于统一管理和即时更新
 
-QQ 群: 595877611
-
 ## Contents
 - [Docs](#docs)
 - [Requirements](#requirements)
