@@ -27,8 +27,8 @@ jobs:
           #     dep ensure
           # fi
 
-      - name: Build
-        run: go build -v .
+      # - name: Build
+      #   run: go build -v .
       - name: gocs
         run: go get -u github.com/vcaesar/gocs
       - name: build
