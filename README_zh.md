@@ -213,14 +213,6 @@ pip install cffi
 - 更新 Window Handle
 - 尝试支持 Android, 也许支持 IOS
 
-## Donate
-
-支持 robotgo, [buy me a coffee](https://github.com/go-vgo/buy-me-a-coffee).
-
-#### Paypal
-
-Donate money by [paypal](https://www.paypal.me/veni0/25) to my account [vzvway@gmail.com](vzvway@gmail.com)
-
 ## Contributors
 
 - See [contributors page](https://github.com/go-vgo/robotgo/graphs/contributors) for full list of contributors.
