@@ -8,9 +8,10 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+const path = require('path');
+
 var ffi = require('ffi-napi');
 // var ffi = require('ffi');
-const path = require('path');
 
 var ref = require('ref-napi');
 var Struct = require("ref-struct-napi");
@@ -112,7 +113,7 @@ var lib = ffi.Library(bin, {
     'AddMouse': ['bool', ["string", "long", "long"]],
     'AddMousePos': ['bool', ["long", "long"]],
     //
-    'ShowAlert': ['int', ['string', 'string']],
+    'ShowAlert': ['bool', ['string', 'string']],
     'GetTitle': ['string', ["long"]],
     'GetBounds': [GoBoud, ['long']],
     'PidExists': [GoBool, ['long']],

@@ -164,8 +164,8 @@ func GetMousePos() (int, int) {
 }
 
 //export Click
-func Click(btn *C.char, double bool) {
-	robotgo.Click(str(btn), double)
+func Click(btn *C.char, doublec bool) {
+	robotgo.Click(str(btn), doublec)
 }
 
 //export MouseToggle
@@ -217,14 +217,18 @@ func ReadAll() (*C.char, *C.char) {
 	return ch(s), ch("")
 }
 
-//export WriteAll
-func WriteAll(text *C.char) *C.char {
-	err := robotgo.WriteAll(str(text))
+func errStr(err error) *C.char {
 	if err != nil {
 		return ech(err)
 	}
 
 	return ch("")
+}
+
+//export WriteAll
+func WriteAll(text *C.char) *C.char {
+	err := robotgo.WriteAll(str(text))
+	return errStr(err)
 }
 
 //export PasteStr
@@ -437,7 +441,7 @@ ____    __    ____  __  .__   __.  _______   ______   ____    __    ____
 */
 
 //export ShowAlert
-func ShowAlert(title, msg *C.char) int {
+func ShowAlert(title, msg *C.char) bool {
 	return robotgo.ShowAlert(str(title), str(msg))
 }
 
@@ -536,11 +540,7 @@ func ActiveName(name *C.char) (c *C.char) {
 //export Kill
 func Kill(pid int32) *C.char {
 	err := robotgo.Kill(pid)
-	if err != nil {
-		return ech(err)
-	}
-
-	return ch("")
+	return errStr(err)
 }
 
 func main() {} // Required but ignored

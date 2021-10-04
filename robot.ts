@@ -90,7 +90,7 @@ declare module "robot" {
   export function addMouse(btn: string, x?: number, y?: number): boolean;
   export function addMousePos(x?: number, y?: number): boolean;
   //
-  export function showAlert(title: string, msg: string): number;
+  export function showAlert(title: string, msg: string): boolean;
   export function getTitle(pid?: number): string;
   export function getBounds(
     pid: number
